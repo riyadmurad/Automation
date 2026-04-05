@@ -1,0 +1,3 @@
+﻿VM_NAME,VM_RAM,VM_CPU,VM_TYPE,VM_NET
+vm_win_01,4,4,win_client,Default Switch
+vm_ubuntu,2,2,ubuntu,Default Switch
