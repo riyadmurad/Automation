@@ -64,7 +64,7 @@ test_deploy_vm,4,4,win_client,LabSwitch
 
 ---
 
-### 2. Setup-MalwareLab.ps1
+### 2. Setup-Triage-VM.ps1
 Automated setup script for creating a Windows malware analysis lab environment.
 
 **Description:**
@@ -90,7 +90,7 @@ This script makes significant system changes. Ensure you have backups or snapsho
 2. **Setup Malware Lab (on a Windows VM):**
    ```powershell
    # Run as Administrator
-   .\Setup-MalwareLab.ps1
+   .\Setup-Triage-VM.ps1
    ```
 
 ## Directory Structure
@@ -98,7 +98,7 @@ This script makes significant system changes. Ensure you have backups or snapsho
 Lab-Workstation-Deplyoments/
 ├── README.md                    # This file
 ├── deploy_vms.ps1              # VM deployment script
-├── Setup-MalwareLab.ps1        # Malware lab setup script
+├── Setup-Triage-VM.ps1        # Malware lab setup script
 ├── vms.csv                     # VM configuration template
 └── README.md                   # Additional documentation
 ```

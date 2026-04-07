@@ -317,29 +317,3 @@ Invoke-Phase1
 Invoke-Phase2
 Invoke-Summary
 
-
-
-<#
-switch ($state.Phase) {
-    0  {
-        Invoke-Phase0
-        Invoke-Phase1
-        Invoke-Phase2
-        Invoke-Summary
-    }
-    1  {
-        Invoke-Phase1
-        Invoke-Phase2
-        Invoke-Summary
-    }
-    2  {
-        Invoke-Phase2
-        Invoke-Summary
-    }
-    99 {
-        Invoke-Summary
-    }
-    default {
-        Write-Log "Unknown phase $($state.Phase). Delete $StateFile to reset." 'ERROR'
-    }
-}#>
