@@ -3,10 +3,8 @@
 
 param(
     [Parameter(Mandatory=$true)]
-    [string]$CSVFilePath,
+    [string]$CSVFilePath
     
-    [Parameter(Mandatory=$false)]
-    [switch]$DryRun
 )
 
 # Set error action preference for better visibility
@@ -103,12 +101,8 @@ foreach ($VM in $VMs) {
     Write-Host "  Type: $($VM.VM_TYPE)" -ForegroundColor White
     Write-Host "  Network: $($VM.VM_NET)" -ForegroundColor White
     Write-Host "  Location: d:\vms\$($VM.VM_NAME)" -ForegroundColor White
-    
-    if ($DryRun) {
-        Write-Host "[DRY RUN] Would create VM with above configuration" -ForegroundColor Cyan
-        continue
-    }
-    
+    # Create the VM from template VHDX
+    Write-Host "[INFO] Creating VM $($VM.VM_NAME)..." -ForegroundColor Blue
     try {
         # Create New-VM command parameters
         $NewVMParams = @{
@@ -120,16 +114,10 @@ foreach ($VM in $VMs) {
             Generation = 2
 
         }
-        
-        # Create the VM from template VHDX
-        Write-Host "[INFO] Creating VM $($VM.VM_NAME)..." -ForegroundColor Blue
-        
-  
-
         Import-Module Hyper-V -ErrorAction SilentlyContinue
         New-VM @NewVMParams -ErrorAction Stop | Out-Null
         Set-VM $VM.VM_NAME -ProcessorCount ($VM.VM_CPU) -AutomaticCheckpointsEnabled $false
-        
+        Set-VMMemory $VM.VM_NAME -DynamicMemoryEnabled $false
         # Generate automatic checkpoint for the VM (for Ubuntu, may need additional config)
         if ($VM.VM_TYPE.ToLower() -eq "ubuntu") {
            Set-VMFirmware -VMName $VM.VM_NAME -SecureBootTemplate "MicrosoftUEFICertificateAuthority"
