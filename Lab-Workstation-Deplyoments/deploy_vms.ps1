@@ -1,5 +1,4 @@
 # Hyper-V VM Deployment Script from CSV
-# Usage: .\Deploy-HyperVVMs.ps1 -CSVFilePath "C:\path\to\your\file.csv" [-DryRun]
 
 param(
     [Parameter(Mandatory=$true)]

@@ -26,9 +26,6 @@ Deploys multiple VMs from a CSV configuration file using the Hyper-V PowerShell 
 .\deploy_vms.ps1 -CSVFilePath "vms.csv"
 ```
 
-**Optional Parameters:**
-- `-DryRun` - Preview VMs to be created without actually deploying them
-
 **Template VHDX Locations:**
 - Ubuntu: `D:\VM-Templates\ubunutu-24-4-lts.vhdx`
 - Windows Client: `D:\VM-Templates\win11_template.vhdx`
