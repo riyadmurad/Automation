@@ -18,6 +18,8 @@ Deploys multiple VMs from a CSV configuration file using the Hyper-V PowerShell 
 - Administrative privileges to run the script
 - Template VHDX files available in `D:\VM-Templates\`
 - Virtual switch configured (e.g., LabSwitch)
+- Powershell execution policy set to allow script execution: `Set-ExecutionPolicy Unrestricted`
+- Disable Windows Defender AV Real-Time Protection.
 
 **Usage:**
 ```powershell
