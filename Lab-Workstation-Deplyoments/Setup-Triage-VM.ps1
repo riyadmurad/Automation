@@ -260,7 +260,8 @@ function Invoke-Phase2 {
         'dnspy',
         'volatility3',
         'autopsy', 
-        'processhacker'
+        'processhacker',
+	    'nasm'
 
 
     )

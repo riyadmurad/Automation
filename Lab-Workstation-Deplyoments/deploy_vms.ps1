@@ -117,7 +117,7 @@ foreach ($VM in $VMs) {
         New-VM @NewVMParams -ErrorAction Stop | Out-Null
         Set-VM $VM.VM_NAME -ProcessorCount ($VM.VM_CPU) -AutomaticCheckpointsEnabled $false
         Set-VMMemory $VM.VM_NAME -DynamicMemoryEnabled $false
-        # Generate automatic checkpoint for the VM (for Ubuntu, may need additional config)
+         Set-VMProcessor -VMName $VM.VM_NAME -ExposeVirtualizationExtensions $true
         if ($VM.VM_TYPE.ToLower() -eq "ubuntu") {
            Set-VMFirmware -VMName $VM.VM_NAME -SecureBootTemplate "MicrosoftUEFICertificateAuthority"
         }

@@ -1,2 +1,2 @@
 ﻿VM_NAME,VM_RAM,VM_CPU,VM_TYPE,VM_NET
-test_deploy_vm,4,4,win_client,LabSwitch
+WIN-DEV-VM,6,6,win_client,LabSwitch
