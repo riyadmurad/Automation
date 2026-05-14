@@ -32,7 +32,7 @@ $Structure = @(
     "40_Resources/Payloads",
     "40_Resources/Research_Papers",
     "40_Resources/Scripts",
-    "50_Archive",
+    "50_Completed",
     "90_System/Templates",
     "90_System/Attachments"
 )
@@ -81,7 +81,7 @@ function Initialize-Vault {
     # 3. Define the README Content
     $ReadmePath = Join-Path $Path "README.md"
     $ReadmeContent = @"
-# 🛡️ SENTINEL KNOWLEDGE BASE: OPERATIONAL SOP
+# 🛡️ OBSIDIAN KNOWLEDGE BASE: OPERATIONAL GUIDE
 
 
 ## ⚙️ MANDATORY CONFIGURATION (DO THIS FIRST)
@@ -104,7 +104,7 @@ To prevent "Vault Rot" (clutter), you **must** configure these settings immediat
 *   **Template folder location:** `90_System/Templates`.
 *   **Folder Templates (CRITICAL):** Enable this and map your folders:
     *   `20_Projects` $\rightarrow$ `Project_Template.md`
-    *   `30_Areas` $\rightarrow$ `Atomic_Note_Template.md`
+    *   `30_Areas` $\rightarrow$ `Area_Note_Template.md`
     *   `10_Daily` $\rightarrow$ `Daily_Note_Template.md`
 
 ### 4. Recommended Hotkeys
@@ -134,7 +134,7 @@ Do not use folders to categorize subjects; use `[[WikiLinks]]` for that. Use fol
 
 ### `20_Projects`| **The Active Missions**
 * **Definition:** Active, time-bound engagements or specific investigations.
-* **Rule:** Use **subfolders** for each project. When finished, move the folder to `50_Archive`.
+* **Rule:** Use **subfolders** for each project. When finished, move the folder to `50_Completed`.
 * **Example:** `20_Projects/APT28_Hunt_2023/` containing `Analysis_Log.md` and `Malware_Samples/`.
 
 ### `30_Areas`| **The Knowledge Domains**
@@ -147,10 +147,10 @@ Do not use folders to categorize subjects; use `[[WikiLinks]]` for that. Use fol
 * **Rule:** If it's a tool, a payload, or a cheat sheet used across multiple projects, it lives here.
 *  **Example:** `40_Resources/Cheat_Sheets/Linux_PrivEsc_Commands.md`.
 
-### `50_Archive` | **The Graveyard**
+### `50_Completed` | **The Graveyard**
 * **Definition:** The graveyard of completed work.
 * **Rule:** Move entire project folders here once the engagement is closed/completed.
-* **Example:** Moving `20_Projects/APT2_Hunt/` to `50_Archive/APT2_Hunt/`.
+* **Example:** Moving `20_Projects/APT2_Hunt/` to `50_Completed/APT2_Hunt/`.
 
 ### `90_System`| **Templates** and **Attachments**
 * **Definition:** The engine and infrastructure of the vault.
@@ -185,8 +185,8 @@ Do not use folders to categorize subjects; use `[[WikiLinks]]` for that. Use fol
 "@
 
     # 4. Define the Template Content
-    $TemplatePath = Join-Path $Path "90_System\Templates\Atomic_Note_Template.md"
-    $TemplateContent = @"
+    $AreaTemplatePath = Join-Path $Path "90_System\Templates\Area_Note_Template.md"
+    $AreaTemplateContent = @"
 ---
 type: concept
 tags: []
@@ -201,12 +201,6 @@ $'\n'
 ## References
 $'\n'
 "@
-
-    # 5. Execute Safe Writes (This handles all directory checks internally)
-    Write-FileSafely -FilePath $ReadmePath -Content $ReadmeContent
-    Write-FileSafely -FilePath $TemplatePath -Content $TemplateContent
-
-    Write-Host "`n[!] Vault Initialization Complete. Ready for Intel Collection." -ForegroundColor Cyan
 
 $ProjectTemplatePath = Join-Path $Path "90_System\Templates\Project_Template.md"
 $ProjectTemplateContent = @"
@@ -228,7 +222,34 @@ $'\n'
 [[ ]]
 "@
 
+$DailyTemplatePath = Join-Path $Path "90_System\Templates\Daily_Log_Template.md"
+$DailyTemplateContent = @"
+---
+type: daily
+status: active
+date: $(Get-Date -Format "yyyy-MM-dd")
+tags: [study, work, personal]
+---
+# Daily Log: $(Get-Date -Format "yyyy-MM-dd")
+
+## 📝 Notes
+$'\n'
+    
+## 📂 Related Areas
+[[ ]]
+"@
+
+
+    
+
+    # 5. Execute Safe Writes (This handles all directory checks internally)
+    Write-FileSafely -FilePath $ReadmePath -Content $ReadmeContent
     Write-FileSafely -FilePath $ProjectTemplatePath -Content $ProjectTemplateContent
+    Write-FileSafely -FilePath $AreaTemplatePath -Content $AreaTemplateContent
+    Write-FileSafely -FilePath $DailyTemplatePath -Content $DailyTemplateContent
+    Write-Host "`n[!] Vault Initialization Complete. Ready for Intel Collection." -ForegroundColor Cyan
+
+
 
 }
 
