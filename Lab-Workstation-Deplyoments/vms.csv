@@ -1,2 +1,2 @@
 ﻿VM_NAME,VM_RAM,VM_CPU,VM_TYPE,VM_NET
-WIN-DEV-VM,6,6,win_client,LabSwitch
+X-LAB-WAZUH,4,4,ubuntu,LabSwitch
