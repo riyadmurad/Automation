@@ -6,11 +6,11 @@ A Microsoft 365 and Azure security assessment platform, alongside PowerShell aut
 
 ## Quick Navigation
 
-| Category | Description | Documentation |
-| -------- | ----------- | ------------- |
-| M365 and Azure Security Assessment | Next.js/.NET foundation with a local synthetic assessment console | [Setup and status](./m365-azure-security-assessment-platform/README.md) |
-| [Lab Workstation Deployments](./Lab-Workstation-Deplyoments/) | Hyper-V VMs, malware analysis labs, AD environments | [View README](./Lab-Workstation-Deplyoments/README.md) |
-| [Obsidian Vault Initialization](./Obsidian-Vault-Initialization/) | Structured knowledge base setup | [View README](./Obsidian-Vault-Initialization/README.md) |
+| Category                                                          | Description                                                       | Documentation                                                           |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| M365 and Azure Security Assessment                                | Next.js/.NET foundation with a local synthetic assessment console | [Setup and status](./m365-azure-security-assessment-platform/README.md) |
+| [Lab Workstation Deployments](./Lab-Workstation-Deplyoments/)     | Hyper-V VMs, malware analysis labs, AD environments               | [View README](./Lab-Workstation-Deplyoments/README.md)                  |
+| [Obsidian Vault Initialization](./Obsidian-Vault-Initialization/) | Structured knowledge base setup                                   | [View README](./Obsidian-Vault-Initialization/README.md)                |
 
 ---
 
@@ -44,12 +44,12 @@ Automated provisioning and configuration for security research environments.
 
 ### What it includes
 
-| Script | Purpose |
-| ------ | ------- |
-| `deploy_vms.ps1` | Deploy Hyper-V VMs from CSV or command line |
-| `Setup-Triage-VM.ps1` | Configure a Windows malware analysis lab |
-| `Lab-Creation.ps1` | Create AD users, groups, and OUs for testing |
-| `vms.csv` | VM configuration template |
+| Script                | Purpose                                      |
+| --------------------- | -------------------------------------------- |
+| `deploy_vms.ps1`      | Deploy Hyper-V VMs from CSV or command line  |
+| `Setup-Triage-VM.ps1` | Configure a Windows malware analysis lab     |
+| `Lab-Creation.ps1`    | Create AD users, groups, and OUs for testing |
+| `vms.csv`             | VM configuration template                    |
 
 ### Key features
 
@@ -69,8 +69,8 @@ Automated setup for a Zettelkasten-style knowledge management system.
 
 ### What it includes
 
-| Script | Purpose |
-| ------ | ------- |
+| Script                          | Purpose                            |
+| ------------------------------- | ---------------------------------- |
 | `initialize_obsidian_vault.ps1` | Create a structured Obsidian vault |
 
 ### Folder structure created

@@ -11,7 +11,7 @@ services:
       - platform-postgres-data:/var/lib/postgresql/data
       - ../../api/M365.SecurityAssessment.Persistence/Migrations:/migrations:ro
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U \"$$POSTGRES_USER\" -d m365_platform"]
+      test: [ "CMD-SHELL", "pg_isready -U \"$$POSTGRES_USER\" -d m365_platform" ]
       interval: 5s
       timeout: 3s
       retries: 12

@@ -24,21 +24,21 @@ Conditional Access scope analysis resolves only concrete principal/application I
 
 All declared families are present in `InitialAdapterCatalog`, but no service has an enabled live operation. This is deliberate: currently pinned source pages describe product settings, not the API path, operation semantics, permissions, licensing, or effective-scope guarantees needed to enable a collector. The manifest records a visible manual/unverified gap for each family; no PowerShell command or endpoint is represented as supported.
 
-| Control | Service family | Current state | Unresolved evidence/operation boundary |
-| --- | --- | --- | --- |
-| ENT-001 | Entra ID | Manual/unverified | Privileged-role source release, supported read path, effective Conditional Access scope, and emergency registry binding |
-| EXO-001 | Exchange Online | Manual/unverified | Organization plus recipient forwarding scope and supported read operation |
-| TEAM-001 | Teams | Manual/unverified | Effective policy assignment and supported read operation |
-| SPO-001 | SharePoint/OneDrive | Manual/unverified | Tenant/site scope; tenant defaults do not prove site-level settings |
-| PP-001 | Power Platform/Power Automate | Manual/unverified | Environment inventory, DLP evaluation, and prohibited connector-pair outcomes |
-| INT-001 | Intune | Manual/unverified | Approved device denominator and effective assignment/deployment state |
-| MDI-001 | Defender for Identity | Manual/unverified | Domain-controller inventory, sensor state, and isolated Windows/on-premises runtime |
-| MDO-001 | Defender for Office 365 | Manual/unverified | Safe Links precedence, license, recipient scope, and click-through state |
-| MDE-001 | Defender for Endpoint | Manual/unverified | Tamper-protection read path, management authority, co-management, and device coverage |
-| MDCA-001 | Defender for Cloud Apps | Manual/unverified | The pinned replacement page is Conditional Access app control, not governance policy coverage |
-| XDR-001 | Defender XDR | Manual/unverified | Licensed-product denominator and configuration evidence separate from incidents |
-| PUR-001 | Purview | Manual/unverified | Audit/DLP permissions, license, and evidence freshness |
-| AZR-001 | Azure | Manual/unverified | ARM operation, subscription/resource-group boundary, and complete storage-account inventory |
+| Control  | Service family                | Current state     | Unresolved evidence/operation boundary                                                                                  |
+| -------- | ----------------------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| ENT-001  | Entra ID                      | Manual/unverified | Privileged-role source release, supported read path, effective Conditional Access scope, and emergency registry binding |
+| EXO-001  | Exchange Online               | Manual/unverified | Organization plus recipient forwarding scope and supported read operation                                               |
+| TEAM-001 | Teams                         | Manual/unverified | Effective policy assignment and supported read operation                                                                |
+| SPO-001  | SharePoint/OneDrive           | Manual/unverified | Tenant/site scope; tenant defaults do not prove site-level settings                                                     |
+| PP-001   | Power Platform/Power Automate | Manual/unverified | Environment inventory, DLP evaluation, and prohibited connector-pair outcomes                                           |
+| INT-001  | Intune                        | Manual/unverified | Approved device denominator and effective assignment/deployment state                                                   |
+| MDI-001  | Defender for Identity         | Manual/unverified | Domain-controller inventory, sensor state, and isolated Windows/on-premises runtime                                     |
+| MDO-001  | Defender for Office 365       | Manual/unverified | Safe Links precedence, license, recipient scope, and click-through state                                                |
+| MDE-001  | Defender for Endpoint         | Manual/unverified | Tamper-protection read path, management authority, co-management, and device coverage                                   |
+| MDCA-001 | Defender for Cloud Apps       | Manual/unverified | The pinned replacement page is Conditional Access app control, not governance policy coverage                           |
+| XDR-001  | Defender XDR                  | Manual/unverified | Licensed-product denominator and configuration evidence separate from incidents                                         |
+| PUR-001  | Purview                       | Manual/unverified | Audit/DLP permissions, license, and evidence freshness                                                                  |
+| AZR-001  | Azure                         | Manual/unverified | ARM operation, subscription/resource-group boundary, and complete storage-account inventory                             |
 
 ## Fixture Authoring
 

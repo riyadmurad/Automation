@@ -1,18 +1,515 @@
 {
-  "schemaVersion": "1.0",
-  "controls": [
-    { "id": "ENT-001", "service": "Entra ID", "sourceOrganization": "CISA SCuBA", "sourceUrl": "https://github.com/cisagov/ScubaGear", "reviewStatus": "unverified", "supportMode": "manual/unverified", "normalizedFields": ["privileged_role_ids", "covered_role_ids", "excluded_principal_ids", "emergency_registry_ids", "unknown_scope_count"], "setFields": ["privileged_role_ids", "covered_role_ids", "excluded_principal_ids", "emergency_registry_ids"], "resourceIdField": "privileged_role_ids", "setEqualityFields": { "covered_role_ids": "privileged_role_ids" }, "setSubsetFields": { "excluded_principal_ids": "emergency_registry_ids" }, "expectedState": { "privileged_role_ids": ["role-ga", "role-pra"], "covered_role_ids": ["role-ga", "role-pra"], "excluded_principal_ids": ["emergency-a"], "emergency_registry_ids": ["emergency-a"], "unknown_scope_count": 0 }, "permissionPrerequisites": ["Unverified; confirm documented read permissions before activation."], "licensePrerequisites": ["Unverified; confirm applicable customer entitlements before activation."], "runtimePrerequisites": ["Unverified; no live adapter runtime has been qualified."] },
-    { "id": "EXO-001", "service": "Exchange Online", "sourceOrganization": "Microsoft", "sourceUrl": "https://learn.microsoft.com/defender-office-365/outbound-spam-policies-external-email-forwarding", "reviewStatus": "unverified", "supportMode": "manual/unverified", "normalizedFields": ["external_auto_forwarding_allowed", "scope_complete"], "expectedState": { "external_auto_forwarding_allowed": false, "scope_complete": true }, "permissionPrerequisites": ["Unverified; confirm documented read permissions before activation."], "licensePrerequisites": ["Unverified; confirm applicable customer entitlements before activation."], "runtimePrerequisites": ["Unverified; no live adapter runtime has been qualified."] },
-    { "id": "TEAM-001", "service": "Teams", "sourceOrganization": "Microsoft", "sourceUrl": "https://learn.microsoft.com/microsoftteams/meeting-policies-in-teams", "reviewStatus": "unverified", "supportMode": "manual/unverified", "normalizedFields": ["anonymous_meeting_join_allowed", "policy_assignment_complete"], "expectedState": { "anonymous_meeting_join_allowed": false, "policy_assignment_complete": true }, "permissionPrerequisites": ["Unverified; confirm documented read permissions before activation."], "licensePrerequisites": ["Unverified; confirm applicable customer entitlements before activation."], "runtimePrerequisites": ["Unverified; no live adapter runtime has been qualified."] },
-    { "id": "SPO-001", "service": "SharePoint and OneDrive", "sourceOrganization": "Microsoft", "sourceUrl": "https://learn.microsoft.com/sharepoint/change-the-default-link-type", "reviewStatus": "unverified", "supportMode": "manual/unverified", "normalizedFields": ["default_link_audience", "default_link_permission", "scope_complete"], "expectedState": { "default_link_audience": "organization", "default_link_permission": "view", "scope_complete": true }, "permissionPrerequisites": ["Unverified; confirm documented read permissions before activation."], "licensePrerequisites": ["Unverified; confirm applicable customer entitlements before activation."], "runtimePrerequisites": ["Unverified; no live adapter runtime has been qualified."] },
-    { "id": "PP-001", "service": "Power Platform and Power Automate", "sourceOrganization": "Microsoft", "sourceUrl": "https://learn.microsoft.com/power-platform/admin/wp-data-loss-prevention", "reviewStatus": "unverified", "supportMode": "manual/unverified", "normalizedFields": ["expected_environment_ids", "covered_environment_ids", "dlp_enabled", "prohibited_connector_pair_tests"], "setFields": ["expected_environment_ids", "covered_environment_ids", "prohibited_connector_pair_tests"], "resourceIdField": "expected_environment_ids", "setEqualityFields": { "covered_environment_ids": "expected_environment_ids" }, "expectedState": { "expected_environment_ids": ["environment-a"], "covered_environment_ids": ["environment-a"], "dlp_enabled": true, "prohibited_connector_pair_tests": ["pair-a-blocked"] }, "permissionPrerequisites": ["Unverified; confirm documented read permissions before activation."], "licensePrerequisites": ["Unverified; confirm applicable customer entitlements before activation."], "runtimePrerequisites": ["Unverified; no live adapter runtime has been qualified."] },
-    { "id": "INT-001", "service": "Intune", "sourceOrganization": "Microsoft", "sourceUrl": "https://learn.microsoft.com/mem/intune/protect/device-compliance-get-started", "reviewStatus": "unverified", "supportMode": "manual/unverified", "normalizedFields": ["expected_device_ids", "compliant_device_ids", "pending_device_ids", "failed_device_ids", "unassigned_device_ids"], "setFields": ["expected_device_ids", "compliant_device_ids", "pending_device_ids", "failed_device_ids", "unassigned_device_ids"], "resourceIdField": "expected_device_ids", "setEqualityFields": { "compliant_device_ids": "expected_device_ids" }, "emptySetFields": ["pending_device_ids", "failed_device_ids", "unassigned_device_ids"], "expectedState": { "expected_device_ids": ["device-a"], "compliant_device_ids": ["device-a"], "pending_device_ids": [], "failed_device_ids": [], "unassigned_device_ids": [] }, "permissionPrerequisites": ["Unverified; confirm documented read permissions before activation."], "licensePrerequisites": ["Unverified; confirm applicable customer entitlements before activation."], "runtimePrerequisites": ["Unverified; no live adapter runtime has been qualified."] },
-    { "id": "MDI-001", "service": "Defender for Identity", "sourceOrganization": "Microsoft", "sourceUrl": "https://learn.microsoft.com/defender-for-identity/deploy/configure-sensor-settings", "reviewStatus": "unverified", "supportMode": "manual/unverified", "normalizedFields": ["expected_domain_controller_ids", "healthy_sensor_ids", "unknown_sensor_ids"], "setFields": ["expected_domain_controller_ids", "healthy_sensor_ids", "unknown_sensor_ids"], "resourceIdField": "expected_domain_controller_ids", "setEqualityFields": { "healthy_sensor_ids": "expected_domain_controller_ids" }, "emptySetFields": ["unknown_sensor_ids"], "expectedState": { "expected_domain_controller_ids": ["dc-a"], "healthy_sensor_ids": ["dc-a"], "unknown_sensor_ids": [] }, "permissionPrerequisites": ["Unverified; confirm documented read permissions before activation."], "licensePrerequisites": ["Unverified; confirm applicable customer entitlements before activation."], "runtimePrerequisites": ["Unverified; no live adapter runtime has been qualified."] },
-    { "id": "MDO-001", "service": "Defender for Office 365", "sourceOrganization": "Microsoft", "sourceUrl": "https://learn.microsoft.com/defender-office-365/safe-links-policies-configure", "reviewStatus": "unverified", "supportMode": "manual/unverified", "normalizedFields": ["safe_links_enabled", "allow_click_through", "expected_recipient_ids", "covered_recipient_ids"], "setFields": ["expected_recipient_ids", "covered_recipient_ids"], "resourceIdField": "expected_recipient_ids", "setEqualityFields": { "covered_recipient_ids": "expected_recipient_ids" }, "expectedState": { "safe_links_enabled": true, "allow_click_through": false, "expected_recipient_ids": ["recipient-a"], "covered_recipient_ids": ["recipient-a"] }, "permissionPrerequisites": ["Unverified; confirm documented read permissions before activation."], "licensePrerequisites": ["Unverified; confirm applicable customer entitlements before activation."], "runtimePrerequisites": ["Unverified; no live adapter runtime has been qualified."] },
-    { "id": "MDE-001", "service": "Defender for Endpoint", "sourceOrganization": "Microsoft", "sourceUrl": "https://learn.microsoft.com/defender-endpoint/enable-tamper-protection", "reviewStatus": "unverified", "supportMode": "manual/unverified", "normalizedFields": ["expected_device_ids", "tamper_protected_device_ids", "unknown_device_ids"], "setFields": ["expected_device_ids", "tamper_protected_device_ids", "unknown_device_ids"], "resourceIdField": "expected_device_ids", "setEqualityFields": { "tamper_protected_device_ids": "expected_device_ids" }, "emptySetFields": ["unknown_device_ids"], "expectedState": { "expected_device_ids": ["device-a"], "tamper_protected_device_ids": ["device-a"], "unknown_device_ids": [] }, "permissionPrerequisites": ["Unverified; confirm documented read permissions before activation."], "licensePrerequisites": ["Unverified; confirm applicable customer entitlements before activation."], "runtimePrerequisites": ["Unverified; no live adapter runtime has been qualified."] },
-    { "id": "MDCA-001", "service": "Defender for Cloud Apps", "sourceOrganization": "Microsoft", "sourceUrl": "https://learn.microsoft.com/defender-cloud-apps/policies", "reviewStatus": "unverified", "supportMode": "manual/unverified", "normalizedFields": ["expected_app_ids", "covered_app_ids", "enabled_governance_policy_ids"], "setFields": ["expected_app_ids", "covered_app_ids", "enabled_governance_policy_ids"], "resourceIdField": "expected_app_ids", "setEqualityFields": { "covered_app_ids": "expected_app_ids" }, "nonEmptySetFields": ["enabled_governance_policy_ids"], "expectedState": { "expected_app_ids": ["app-a"], "covered_app_ids": ["app-a"], "enabled_governance_policy_ids": ["policy-a"] }, "permissionPrerequisites": ["Unverified; confirm documented read permissions before activation."], "licensePrerequisites": ["Unverified; confirm applicable customer entitlements before activation."], "runtimePrerequisites": ["Unverified; no live adapter runtime has been qualified."] },
-    { "id": "XDR-001", "service": "Defender XDR", "sourceOrganization": "Microsoft", "sourceUrl": "https://learn.microsoft.com/defender-xdr/microsoft-365-defender", "reviewStatus": "unverified", "supportMode": "manual/unverified", "normalizedFields": ["expected_product_ids", "integrated_product_ids", "unknown_product_ids"], "setFields": ["expected_product_ids", "integrated_product_ids", "unknown_product_ids"], "setEqualityFields": { "integrated_product_ids": "expected_product_ids" }, "emptySetFields": ["unknown_product_ids"], "expectedState": { "expected_product_ids": ["mdo", "mde"], "integrated_product_ids": ["mdo", "mde"], "unknown_product_ids": [] }, "permissionPrerequisites": ["Unverified; confirm documented read permissions before activation."], "licensePrerequisites": ["Unverified; confirm applicable customer entitlements before activation."], "runtimePrerequisites": ["Unverified; no live adapter runtime has been qualified."] },
-    { "id": "PUR-001", "service": "Purview", "sourceOrganization": "Microsoft", "sourceUrl": "https://learn.microsoft.com/purview/audit-log-enable-disable", "reviewStatus": "unverified", "supportMode": "manual/unverified", "normalizedFields": ["unified_audit_log_enabled", "evidence_fresh"], "expectedState": { "unified_audit_log_enabled": true, "evidence_fresh": true }, "permissionPrerequisites": ["Unverified; confirm documented read permissions before activation."], "licensePrerequisites": ["Unverified; confirm applicable customer entitlements before activation."], "runtimePrerequisites": ["Unverified; no live adapter runtime has been qualified."] },
-    { "id": "AZR-001", "service": "Azure", "sourceOrganization": "Microsoft", "sourceUrl": "https://learn.microsoft.com/azure/storage/common/storage-require-secure-transfer", "reviewStatus": "unverified", "supportMode": "manual/unverified", "normalizedFields": ["expected_storage_account_ids", "secure_transfer_required_ids", "unknown_account_ids"], "setFields": ["expected_storage_account_ids", "secure_transfer_required_ids", "unknown_account_ids"], "resourceIdField": "expected_storage_account_ids", "setEqualityFields": { "secure_transfer_required_ids": "expected_storage_account_ids" }, "emptySetFields": ["unknown_account_ids"], "expectedState": { "expected_storage_account_ids": ["storage-a"], "secure_transfer_required_ids": ["storage-a"], "unknown_account_ids": [] }, "permissionPrerequisites": ["Unverified; confirm documented read permissions before activation."], "licensePrerequisites": ["Unverified; confirm applicable customer entitlements before activation."], "runtimePrerequisites": ["Unverified; no live adapter runtime has been qualified."] }
-  ]
+    "schemaVersion": "1.0",
+    "controls": [
+        {
+            "id": "ENT-001",
+            "service": "Entra ID",
+            "sourceOrganization": "CISA SCuBA",
+            "sourceUrl": "https://github.com/cisagov/ScubaGear",
+            "reviewStatus": "unverified",
+            "supportMode": "manual/unverified",
+            "normalizedFields": [
+                "privileged_role_ids",
+                "covered_role_ids",
+                "excluded_principal_ids",
+                "emergency_registry_ids",
+                "unknown_scope_count"
+            ],
+            "setFields": [
+                "privileged_role_ids",
+                "covered_role_ids",
+                "excluded_principal_ids",
+                "emergency_registry_ids"
+            ],
+            "resourceIdField": "privileged_role_ids",
+            "setEqualityFields": {
+                "covered_role_ids": "privileged_role_ids"
+            },
+            "setSubsetFields": {
+                "excluded_principal_ids": "emergency_registry_ids"
+            },
+            "expectedState": {
+                "privileged_role_ids": [
+                    "role-ga",
+                    "role-pra"
+                ],
+                "covered_role_ids": [
+                    "role-ga",
+                    "role-pra"
+                ],
+                "excluded_principal_ids": [
+                    "emergency-a"
+                ],
+                "emergency_registry_ids": [
+                    "emergency-a"
+                ],
+                "unknown_scope_count": 0
+            },
+            "permissionPrerequisites": [
+                "Unverified; confirm documented read permissions before activation."
+            ],
+            "licensePrerequisites": [
+                "Unverified; confirm applicable customer entitlements before activation."
+            ],
+            "runtimePrerequisites": [
+                "Unverified; no live adapter runtime has been qualified."
+            ]
+        },
+        {
+            "id": "EXO-001",
+            "service": "Exchange Online",
+            "sourceOrganization": "Microsoft",
+            "sourceUrl": "https://learn.microsoft.com/defender-office-365/outbound-spam-policies-external-email-forwarding",
+            "reviewStatus": "unverified",
+            "supportMode": "manual/unverified",
+            "normalizedFields": [
+                "external_auto_forwarding_allowed",
+                "scope_complete"
+            ],
+            "expectedState": {
+                "external_auto_forwarding_allowed": false,
+                "scope_complete": true
+            },
+            "permissionPrerequisites": [
+                "Unverified; confirm documented read permissions before activation."
+            ],
+            "licensePrerequisites": [
+                "Unverified; confirm applicable customer entitlements before activation."
+            ],
+            "runtimePrerequisites": [
+                "Unverified; no live adapter runtime has been qualified."
+            ]
+        },
+        {
+            "id": "TEAM-001",
+            "service": "Teams",
+            "sourceOrganization": "Microsoft",
+            "sourceUrl": "https://learn.microsoft.com/microsoftteams/meeting-policies-in-teams",
+            "reviewStatus": "unverified",
+            "supportMode": "manual/unverified",
+            "normalizedFields": [
+                "anonymous_meeting_join_allowed",
+                "policy_assignment_complete"
+            ],
+            "expectedState": {
+                "anonymous_meeting_join_allowed": false,
+                "policy_assignment_complete": true
+            },
+            "permissionPrerequisites": [
+                "Unverified; confirm documented read permissions before activation."
+            ],
+            "licensePrerequisites": [
+                "Unverified; confirm applicable customer entitlements before activation."
+            ],
+            "runtimePrerequisites": [
+                "Unverified; no live adapter runtime has been qualified."
+            ]
+        },
+        {
+            "id": "SPO-001",
+            "service": "SharePoint and OneDrive",
+            "sourceOrganization": "Microsoft",
+            "sourceUrl": "https://learn.microsoft.com/sharepoint/change-the-default-link-type",
+            "reviewStatus": "unverified",
+            "supportMode": "manual/unverified",
+            "normalizedFields": [
+                "default_link_audience",
+                "default_link_permission",
+                "scope_complete"
+            ],
+            "expectedState": {
+                "default_link_audience": "organization",
+                "default_link_permission": "view",
+                "scope_complete": true
+            },
+            "permissionPrerequisites": [
+                "Unverified; confirm documented read permissions before activation."
+            ],
+            "licensePrerequisites": [
+                "Unverified; confirm applicable customer entitlements before activation."
+            ],
+            "runtimePrerequisites": [
+                "Unverified; no live adapter runtime has been qualified."
+            ]
+        },
+        {
+            "id": "PP-001",
+            "service": "Power Platform and Power Automate",
+            "sourceOrganization": "Microsoft",
+            "sourceUrl": "https://learn.microsoft.com/power-platform/admin/wp-data-loss-prevention",
+            "reviewStatus": "unverified",
+            "supportMode": "manual/unverified",
+            "normalizedFields": [
+                "expected_environment_ids",
+                "covered_environment_ids",
+                "dlp_enabled",
+                "prohibited_connector_pair_tests"
+            ],
+            "setFields": [
+                "expected_environment_ids",
+                "covered_environment_ids",
+                "prohibited_connector_pair_tests"
+            ],
+            "resourceIdField": "expected_environment_ids",
+            "setEqualityFields": {
+                "covered_environment_ids": "expected_environment_ids"
+            },
+            "expectedState": {
+                "expected_environment_ids": [
+                    "environment-a"
+                ],
+                "covered_environment_ids": [
+                    "environment-a"
+                ],
+                "dlp_enabled": true,
+                "prohibited_connector_pair_tests": [
+                    "pair-a-blocked"
+                ]
+            },
+            "permissionPrerequisites": [
+                "Unverified; confirm documented read permissions before activation."
+            ],
+            "licensePrerequisites": [
+                "Unverified; confirm applicable customer entitlements before activation."
+            ],
+            "runtimePrerequisites": [
+                "Unverified; no live adapter runtime has been qualified."
+            ]
+        },
+        {
+            "id": "INT-001",
+            "service": "Intune",
+            "sourceOrganization": "Microsoft",
+            "sourceUrl": "https://learn.microsoft.com/mem/intune/protect/device-compliance-get-started",
+            "reviewStatus": "unverified",
+            "supportMode": "manual/unverified",
+            "normalizedFields": [
+                "expected_device_ids",
+                "compliant_device_ids",
+                "pending_device_ids",
+                "failed_device_ids",
+                "unassigned_device_ids"
+            ],
+            "setFields": [
+                "expected_device_ids",
+                "compliant_device_ids",
+                "pending_device_ids",
+                "failed_device_ids",
+                "unassigned_device_ids"
+            ],
+            "resourceIdField": "expected_device_ids",
+            "setEqualityFields": {
+                "compliant_device_ids": "expected_device_ids"
+            },
+            "emptySetFields": [
+                "pending_device_ids",
+                "failed_device_ids",
+                "unassigned_device_ids"
+            ],
+            "expectedState": {
+                "expected_device_ids": [
+                    "device-a"
+                ],
+                "compliant_device_ids": [
+                    "device-a"
+                ],
+                "pending_device_ids": [],
+                "failed_device_ids": [],
+                "unassigned_device_ids": []
+            },
+            "permissionPrerequisites": [
+                "Unverified; confirm documented read permissions before activation."
+            ],
+            "licensePrerequisites": [
+                "Unverified; confirm applicable customer entitlements before activation."
+            ],
+            "runtimePrerequisites": [
+                "Unverified; no live adapter runtime has been qualified."
+            ]
+        },
+        {
+            "id": "MDI-001",
+            "service": "Defender for Identity",
+            "sourceOrganization": "Microsoft",
+            "sourceUrl": "https://learn.microsoft.com/defender-for-identity/deploy/configure-sensor-settings",
+            "reviewStatus": "unverified",
+            "supportMode": "manual/unverified",
+            "normalizedFields": [
+                "expected_domain_controller_ids",
+                "healthy_sensor_ids",
+                "unknown_sensor_ids"
+            ],
+            "setFields": [
+                "expected_domain_controller_ids",
+                "healthy_sensor_ids",
+                "unknown_sensor_ids"
+            ],
+            "resourceIdField": "expected_domain_controller_ids",
+            "setEqualityFields": {
+                "healthy_sensor_ids": "expected_domain_controller_ids"
+            },
+            "emptySetFields": [
+                "unknown_sensor_ids"
+            ],
+            "expectedState": {
+                "expected_domain_controller_ids": [
+                    "dc-a"
+                ],
+                "healthy_sensor_ids": [
+                    "dc-a"
+                ],
+                "unknown_sensor_ids": []
+            },
+            "permissionPrerequisites": [
+                "Unverified; confirm documented read permissions before activation."
+            ],
+            "licensePrerequisites": [
+                "Unverified; confirm applicable customer entitlements before activation."
+            ],
+            "runtimePrerequisites": [
+                "Unverified; no live adapter runtime has been qualified."
+            ]
+        },
+        {
+            "id": "MDO-001",
+            "service": "Defender for Office 365",
+            "sourceOrganization": "Microsoft",
+            "sourceUrl": "https://learn.microsoft.com/defender-office-365/safe-links-policies-configure",
+            "reviewStatus": "unverified",
+            "supportMode": "manual/unverified",
+            "normalizedFields": [
+                "safe_links_enabled",
+                "allow_click_through",
+                "expected_recipient_ids",
+                "covered_recipient_ids"
+            ],
+            "setFields": [
+                "expected_recipient_ids",
+                "covered_recipient_ids"
+            ],
+            "resourceIdField": "expected_recipient_ids",
+            "setEqualityFields": {
+                "covered_recipient_ids": "expected_recipient_ids"
+            },
+            "expectedState": {
+                "safe_links_enabled": true,
+                "allow_click_through": false,
+                "expected_recipient_ids": [
+                    "recipient-a"
+                ],
+                "covered_recipient_ids": [
+                    "recipient-a"
+                ]
+            },
+            "permissionPrerequisites": [
+                "Unverified; confirm documented read permissions before activation."
+            ],
+            "licensePrerequisites": [
+                "Unverified; confirm applicable customer entitlements before activation."
+            ],
+            "runtimePrerequisites": [
+                "Unverified; no live adapter runtime has been qualified."
+            ]
+        },
+        {
+            "id": "MDE-001",
+            "service": "Defender for Endpoint",
+            "sourceOrganization": "Microsoft",
+            "sourceUrl": "https://learn.microsoft.com/defender-endpoint/enable-tamper-protection",
+            "reviewStatus": "unverified",
+            "supportMode": "manual/unverified",
+            "normalizedFields": [
+                "expected_device_ids",
+                "tamper_protected_device_ids",
+                "unknown_device_ids"
+            ],
+            "setFields": [
+                "expected_device_ids",
+                "tamper_protected_device_ids",
+                "unknown_device_ids"
+            ],
+            "resourceIdField": "expected_device_ids",
+            "setEqualityFields": {
+                "tamper_protected_device_ids": "expected_device_ids"
+            },
+            "emptySetFields": [
+                "unknown_device_ids"
+            ],
+            "expectedState": {
+                "expected_device_ids": [
+                    "device-a"
+                ],
+                "tamper_protected_device_ids": [
+                    "device-a"
+                ],
+                "unknown_device_ids": []
+            },
+            "permissionPrerequisites": [
+                "Unverified; confirm documented read permissions before activation."
+            ],
+            "licensePrerequisites": [
+                "Unverified; confirm applicable customer entitlements before activation."
+            ],
+            "runtimePrerequisites": [
+                "Unverified; no live adapter runtime has been qualified."
+            ]
+        },
+        {
+            "id": "MDCA-001",
+            "service": "Defender for Cloud Apps",
+            "sourceOrganization": "Microsoft",
+            "sourceUrl": "https://learn.microsoft.com/defender-cloud-apps/policies",
+            "reviewStatus": "unverified",
+            "supportMode": "manual/unverified",
+            "normalizedFields": [
+                "expected_app_ids",
+                "covered_app_ids",
+                "enabled_governance_policy_ids"
+            ],
+            "setFields": [
+                "expected_app_ids",
+                "covered_app_ids",
+                "enabled_governance_policy_ids"
+            ],
+            "resourceIdField": "expected_app_ids",
+            "setEqualityFields": {
+                "covered_app_ids": "expected_app_ids"
+            },
+            "nonEmptySetFields": [
+                "enabled_governance_policy_ids"
+            ],
+            "expectedState": {
+                "expected_app_ids": [
+                    "app-a"
+                ],
+                "covered_app_ids": [
+                    "app-a"
+                ],
+                "enabled_governance_policy_ids": [
+                    "policy-a"
+                ]
+            },
+            "permissionPrerequisites": [
+                "Unverified; confirm documented read permissions before activation."
+            ],
+            "licensePrerequisites": [
+                "Unverified; confirm applicable customer entitlements before activation."
+            ],
+            "runtimePrerequisites": [
+                "Unverified; no live adapter runtime has been qualified."
+            ]
+        },
+        {
+            "id": "XDR-001",
+            "service": "Defender XDR",
+            "sourceOrganization": "Microsoft",
+            "sourceUrl": "https://learn.microsoft.com/defender-xdr/microsoft-365-defender",
+            "reviewStatus": "unverified",
+            "supportMode": "manual/unverified",
+            "normalizedFields": [
+                "expected_product_ids",
+                "integrated_product_ids",
+                "unknown_product_ids"
+            ],
+            "setFields": [
+                "expected_product_ids",
+                "integrated_product_ids",
+                "unknown_product_ids"
+            ],
+            "setEqualityFields": {
+                "integrated_product_ids": "expected_product_ids"
+            },
+            "emptySetFields": [
+                "unknown_product_ids"
+            ],
+            "expectedState": {
+                "expected_product_ids": [
+                    "mdo",
+                    "mde"
+                ],
+                "integrated_product_ids": [
+                    "mdo",
+                    "mde"
+                ],
+                "unknown_product_ids": []
+            },
+            "permissionPrerequisites": [
+                "Unverified; confirm documented read permissions before activation."
+            ],
+            "licensePrerequisites": [
+                "Unverified; confirm applicable customer entitlements before activation."
+            ],
+            "runtimePrerequisites": [
+                "Unverified; no live adapter runtime has been qualified."
+            ]
+        },
+        {
+            "id": "PUR-001",
+            "service": "Purview",
+            "sourceOrganization": "Microsoft",
+            "sourceUrl": "https://learn.microsoft.com/purview/audit-log-enable-disable",
+            "reviewStatus": "unverified",
+            "supportMode": "manual/unverified",
+            "normalizedFields": [
+                "unified_audit_log_enabled",
+                "evidence_fresh"
+            ],
+            "expectedState": {
+                "unified_audit_log_enabled": true,
+                "evidence_fresh": true
+            },
+            "permissionPrerequisites": [
+                "Unverified; confirm documented read permissions before activation."
+            ],
+            "licensePrerequisites": [
+                "Unverified; confirm applicable customer entitlements before activation."
+            ],
+            "runtimePrerequisites": [
+                "Unverified; no live adapter runtime has been qualified."
+            ]
+        },
+        {
+            "id": "AZR-001",
+            "service": "Azure",
+            "sourceOrganization": "Microsoft",
+            "sourceUrl": "https://learn.microsoft.com/azure/storage/common/storage-require-secure-transfer",
+            "reviewStatus": "unverified",
+            "supportMode": "manual/unverified",
+            "normalizedFields": [
+                "expected_storage_account_ids",
+                "secure_transfer_required_ids",
+                "unknown_account_ids"
+            ],
+            "setFields": [
+                "expected_storage_account_ids",
+                "secure_transfer_required_ids",
+                "unknown_account_ids"
+            ],
+            "resourceIdField": "expected_storage_account_ids",
+            "setEqualityFields": {
+                "secure_transfer_required_ids": "expected_storage_account_ids"
+            },
+            "emptySetFields": [
+                "unknown_account_ids"
+            ],
+            "expectedState": {
+                "expected_storage_account_ids": [
+                    "storage-a"
+                ],
+                "secure_transfer_required_ids": [
+                    "storage-a"
+                ],
+                "unknown_account_ids": []
+            },
+            "permissionPrerequisites": [
+                "Unverified; confirm documented read permissions before activation."
+            ],
+            "licensePrerequisites": [
+                "Unverified; confirm applicable customer entitlements before activation."
+            ],
+            "runtimePrerequisites": [
+                "Unverified; no live adapter runtime has been qualified."
+            ]
+        }
+    ]
 }

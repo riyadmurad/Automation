@@ -13,17 +13,17 @@ Updated: 2026-11-02. Read this file first; do not reconstruct this session from 
 
 ## Accepted Foundation
 
-| Task | Acceptance Evidence |
-| --- | --- |
-| 1.1 | Next.js/.NET projects, workers, tests and runtime pins exist; current solution builds |
-| 1.2 | Versioned contracts, two synthetic customers, tenant/purpose/organization binding and negative contract tests |
-| 1.3 | Frozen 13-control candidate 0.1.1 with retrieval/source pins, normalized rules, prerequisites and scenario/task/fixture mapping |
-| 1.4 | Root/platform setup guides and safe synthetic build/test commands |
-| 1.5 | All 13 controls across eight required outcomes, with exact status/reason checks plus evidence/schema/provenance/inventory negatives |
+| Task | Acceptance Evidence                                                                                                                 |
+| ---- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| 1.1  | Next.js/.NET projects, workers, tests and runtime pins exist; current solution builds                                               |
+| 1.2  | Versioned contracts, two synthetic customers, tenant/purpose/organization binding and negative contract tests                       |
+| 1.3  | Frozen 13-control candidate 0.1.1 with retrieval/source pins, normalized rules, prerequisites and scenario/task/fixture mapping     |
+| 1.4  | Root/platform setup guides and safe synthetic build/test commands                                                                   |
+| 1.5  | All 13 controls across eight required outcomes, with exact status/reason checks plus evidence/schema/provenance/inventory negatives |
 
 Current candidate: `baselines/qualified/pack-0.1.1.json`.
 Freeze pin: `baselines/qualified/freeze-manifest-0.1.1.json`.
-Pack-file SHA-256: `D52A248899C3C3B27FCA91C738AAC6C237978E3EA0618F47CE9E96F692168AE4`.
+Pack-file SHA-256: `E9113FA7E9FF4199A420E05E346FDDFE820F68FB05EBEEA0A82FB89BC7EE3F42` (current 0.1.1 file bytes; parsed source content matches the committed pre-format candidate).
 
 Version 0.1.0 and its manifest remain unchanged as history. Version 0.1.1 corrects PP-001 to allow extra covered environments while requiring all independently approved expected environments to be covered. Do not edit frozen versions in place; create a new pack version and pin for future changes.
 

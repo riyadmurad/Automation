@@ -40,14 +40,14 @@ Reproduce from repository root with `npm --prefix m365-azure-security-assessment
 Commands ran from repository root against the already-running dev server; no server was started,
 stopped or restarted. Previous unit-suite results below are explicitly not fresh browser-run evidence.
 
-| Command | Exit | Observed result |
-| --- | --- | --- |
-| `npm --prefix m365-azure-security-assessment-platform/web run test:e2e` | 1 | Fresh: 3 passed, 3 failed, 0 skipped, 0 flaky |
-| `node --input-type=module -e '<local Playwright audit screenshot inspection>'` | 0 | Fresh: Node v26.12.0; HTTP 200 at both widths; keyboard-opened audit dialog and scrolled to bottom at 390 and 1440; diagnostic, not another passing test |
-| `node -e '<parse test-results/results.json>'` | 0 | Fresh: extracted counts, errors, layout attachments and observations |
-| `docker info --format 'OSType={{.OSType}} ServerVersion={{.ServerVersion}} Name={{.Name}}'` | 0 | Daemon responding; Linux, Docker 29.8.2, docker-desktop |
-| `npm --prefix m365-azure-security-assessment-platform/web test` | 0, prior run | Previous: 5 files, 59 passed, 0 failed, 0 skipped; not rerun in this focused browser task |
-| `dotnet test m365-azure-security-assessment-platform/M365.SecurityAssessment.slnx` | 0, prior run | Previous: 51 passed, 0 failed, 0 skipped; not rerun in this focused browser task |
+| Command                                                                                     | Exit         | Observed result                                                                                                                                          |
+| ------------------------------------------------------------------------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm --prefix m365-azure-security-assessment-platform/web run test:e2e`                     | 1            | Fresh: 3 passed, 3 failed, 0 skipped, 0 flaky                                                                                                            |
+| `node --input-type=module -e '<local Playwright audit screenshot inspection>'`              | 0            | Fresh: Node v26.12.0; HTTP 200 at both widths; keyboard-opened audit dialog and scrolled to bottom at 390 and 1440; diagnostic, not another passing test |
+| `node -e '<parse test-results/results.json>'`                                               | 0            | Fresh: extracted counts, errors, layout attachments and observations                                                                                     |
+| `docker info --format 'OSType={{.OSType}} ServerVersion={{.ServerVersion}} Name={{.Name}}'` | 0            | Daemon responding; Linux, Docker 29.8.2, docker-desktop                                                                                                  |
+| `npm --prefix m365-azure-security-assessment-platform/web test`                             | 0, prior run | Previous: 5 files, 59 passed, 0 failed, 0 skipped; not rerun in this focused browser task                                                                |
+| `dotnet test m365-azure-security-assessment-platform/M365.SecurityAssessment.slnx`          | 0, prior run | Previous: 51 passed, 0 failed, 0 skipped; not rerun in this focused browser task                                                                         |
 
 Editor diagnostics: no errors in the two edited TypeScript files. Production build was NOT run while
 dev remains active. No cloud/customer/external API calls, live contracts, credentials, container
@@ -59,14 +59,14 @@ The three existing journey specs run in desktop (1440x1000) and mobile (390x844)
 reuses the supplied server and blocks non-loopback requests. Browser observations reported zero
 console/page errors and zero blocked external origins for all six cases.
 
-| Project / case | Result and concrete behavior |
-| --- | --- |
-| Desktop / audit | PASS: six outcome distinctions, combined filters, detail, Escape, JSON/CSV parity, reversed-date empty export, redaction and customer-B isolation. |
-| Desktop / findings | PASS: filters, keyboard open, initial focus, forward/backward focus containment, Escape/opener restoration, JSON/CSV exports, script-text empty search and customer-B isolation. |
-| Desktop / navigation | PASS: five screens, layout checks, detail open/close and customer-switch state reset. |
-| Mobile / audit | FAIL: 30s timeout at `audit.spec.ts:21`, clicking the single filtered `tbody .row-link`; sidebar/workspace intercept pointer events. Detail/export/redaction assertions after this step were not reached. |
-| Mobile / findings | FAIL: `finding-detail` expected viewport/document <=390, received 617 for both. Dialog opens; focus cycles, Escape restoration, exports, negative search and tenant isolation continue and pass (only the two layout soft assertions fail). |
-| Mobile / navigation | FAIL: Assessments 594px, Findings 619px and Audit 956px viewport/document width versus configured 390px; Overview and Coverage both 390px. Then `navigation.spec.ts:14` audit-row click times out with sidebar/workspace interception; subsequent tenant reset is unverified. |
+| Project / case       | Result and concrete behavior                                                                                                                                                                                                                                                  |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Desktop / audit      | PASS: six outcome distinctions, combined filters, detail, Escape, JSON/CSV parity, reversed-date empty export, redaction and customer-B isolation.                                                                                                                            |
+| Desktop / findings   | PASS: filters, keyboard open, initial focus, forward/backward focus containment, Escape/opener restoration, JSON/CSV exports, script-text empty search and customer-B isolation.                                                                                              |
+| Desktop / navigation | PASS: five screens, layout checks, detail open/close and customer-switch state reset.                                                                                                                                                                                         |
+| Mobile / audit       | FAIL: 30s timeout at `audit.spec.ts:21`, clicking the single filtered `tbody .row-link`; sidebar/workspace intercept pointer events. Detail/export/redaction assertions after this step were not reached.                                                                     |
+| Mobile / findings    | FAIL: `finding-detail` expected viewport/document <=390, received 617 for both. Dialog opens; focus cycles, Escape restoration, exports, negative search and tenant isolation continue and pass (only the two layout soft assertions fail).                                   |
+| Mobile / navigation  | FAIL: Assessments 594px, Findings 619px and Audit 956px viewport/document width versus configured 390px; Overview and Coverage both 390px. Then `navigation.spec.ts:14` audit-row click times out with sidebar/workspace interception; subsequent tenant reset is unverified. |
 
 ### Actual screenshot/layout inspection
 

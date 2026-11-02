@@ -1,36 +1,36 @@
 {
-  "schemaVersion": "1.0",
-  "retrievalNote": "These HTTP error bodies are pinned only as evidence that the earlier design URLs were stale. Their hashes are not guidance revisions and are not used by the qualified pack.",
-  "failures": [
-    {
-      "controlId": "SPO-001",
-      "requestedUrl": "https://learn.microsoft.com/sharepoint/change-the-default-link-type",
-      "resolvedUrl": "https://learn.microsoft.com/en-us/sharepoint/change-the-default-link-type",
-      "httpStatus": 404,
-      "retrievedAtUtc": "2026-11-02T10:10:05.9336789Z",
-      "responseByteLength": 17973,
-      "responseSha256": "59236e9bc876ab761e6acb34961223f13d200cb7fabae0e60b8d2280dd25ffb9",
-      "disposition": "Replaced with the current Microsoft Learn page; expected values remain organization policy candidates."
-    },
-    {
-      "controlId": "MDE-001",
-      "requestedUrl": "https://learn.microsoft.com/defender-endpoint/enable-tamper-protection",
-      "resolvedUrl": "https://learn.microsoft.com/en-us/defender-endpoint/enable-tamper-protection",
-      "httpStatus": 404,
-      "retrievedAtUtc": "2026-11-02T10:10:08.0171814Z",
-      "responseByteLength": 17973,
-      "responseSha256": "59236e9bc876ab761e6acb34961223f13d200cb7fabae0e60b8d2280dd25ffb9",
-      "disposition": "Replaced with the current Microsoft tamper-protection overview; device coverage and API remain unqualified."
-    },
-    {
-      "controlId": "MDCA-001",
-      "requestedUrl": "https://learn.microsoft.com/defender-cloud-apps/policies",
-      "resolvedUrl": "https://learn.microsoft.com/en-us/defender-cloud-apps/policies",
-      "httpStatus": 404,
-      "retrievedAtUtc": "2026-11-02T10:10:08.3326151Z",
-      "responseByteLength": 17973,
-      "responseSha256": "59236e9bc876ab761e6acb34961223f13d200cb7fabae0e60b8d2280dd25ffb9",
-      "disposition": "A live Microsoft page about Conditional Access app control was pinned, but it does not support the governance policy coverage expectation; this control remains unresolved."
-    }
-  ]
+    "schemaVersion": "1.0",
+    "retrievalNote": "These HTTP error bodies are pinned only as evidence that the earlier design URLs were stale. Their hashes are not guidance revisions and are not used by the qualified pack.",
+    "failures": [
+        {
+            "controlId": "SPO-001",
+            "requestedUrl": "https://learn.microsoft.com/sharepoint/change-the-default-link-type",
+            "resolvedUrl": "https://learn.microsoft.com/en-us/sharepoint/change-the-default-link-type",
+            "httpStatus": 404,
+            "retrievedAtUtc": "2026-11-02T10:10:05.9336789Z",
+            "responseByteLength": 17973,
+            "responseSha256": "59236e9bc876ab761e6acb34961223f13d200cb7fabae0e60b8d2280dd25ffb9",
+            "disposition": "Replaced with the current Microsoft Learn page; expected values remain organization policy candidates."
+        },
+        {
+            "controlId": "MDE-001",
+            "requestedUrl": "https://learn.microsoft.com/defender-endpoint/enable-tamper-protection",
+            "resolvedUrl": "https://learn.microsoft.com/en-us/defender-endpoint/enable-tamper-protection",
+            "httpStatus": 404,
+            "retrievedAtUtc": "2026-11-02T10:10:08.0171814Z",
+            "responseByteLength": 17973,
+            "responseSha256": "59236e9bc876ab761e6acb34961223f13d200cb7fabae0e60b8d2280dd25ffb9",
+            "disposition": "Replaced with the current Microsoft tamper-protection overview; device coverage and API remain unqualified."
+        },
+        {
+            "controlId": "MDCA-001",
+            "requestedUrl": "https://learn.microsoft.com/defender-cloud-apps/policies",
+            "resolvedUrl": "https://learn.microsoft.com/en-us/defender-cloud-apps/policies",
+            "httpStatus": 404,
+            "retrievedAtUtc": "2026-11-02T10:10:08.3326151Z",
+            "responseByteLength": 17973,
+            "responseSha256": "59236e9bc876ab761e6acb34961223f13d200cb7fabae0e60b8d2280dd25ffb9",
+            "disposition": "A live Microsoft page about Conditional Access app control was pinned, but it does not support the governance policy coverage expectation; this control remains unresolved."
+        }
+    ]
 }

@@ -1,16 +1,19 @@
 {
-  "profile": "development-test",
-  "productionSlo": false,
-  "perCustomerActiveJobs": 2,
-  "jobTimeoutSeconds": 1800,
-  "maxTransientRetries": 5,
-  "maxRetryBackoffSeconds": 900,
-  "honorRetryAfter": true,
-  "queueAgeAlertSeconds": 600,
-  "uncertainWriteReconcileSeconds": 600,
-  "uncertainWriteRetryPolicy": "read-before-retry",
-  "syntheticFixtureRetentionDays": 14,
-  "budgetAlertPercent": [75, 90],
-  "recoveryRtoHours": 4,
-  "recoveryRpoMinutes": 15
+    "profile": "development-test",
+    "productionSlo": false,
+    "perCustomerActiveJobs": 2,
+    "jobTimeoutSeconds": 1800,
+    "maxTransientRetries": 5,
+    "maxRetryBackoffSeconds": 900,
+    "honorRetryAfter": true,
+    "queueAgeAlertSeconds": 600,
+    "uncertainWriteReconcileSeconds": 600,
+    "uncertainWriteRetryPolicy": "read-before-retry",
+    "syntheticFixtureRetentionDays": 14,
+    "budgetAlertPercent": [
+        75,
+        90
+    ],
+    "recoveryRtoHours": 4,
+    "recoveryRpoMinutes": 15
 }

@@ -1,34 +1,34 @@
 {
-  "schemaVersion": "1.0",
-  "packId": "m365-azure-security-initial",
-  "packVersion": "0.1.1",
-  "packFile": "pack-0.1.1.json",
-  "packFileSha256": "D52A248899C3C3B27FCA91C738AAC6C237978E3EA0618F47CE9E96F692168AE4",
-  "controlIds": [
-    "ENT-001",
-    "EXO-001",
-    "TEAM-001",
-    "SPO-001",
-    "PP-001",
-    "INT-001",
-    "MDI-001",
-    "MDO-001",
-    "MDE-001",
-    "MDCA-001",
-    "XDR-001",
-    "PUR-001",
-    "AZR-001"
-  ],
-  "requiredAcceptanceCases": [
-    "matching-candidate",
-    "mismatching-candidate",
-    "denied",
-    "partial",
-    "stale",
-    "unsupported",
-    "missing-license",
-    "manual"
-  ],
-  "traceabilitySource": "pack-0.1.1.json",
-  "sourceProvenanceSource": "pack-0.1.1.json"
+    "schemaVersion": "1.0",
+    "packId": "m365-azure-security-initial",
+    "packVersion": "0.1.1",
+    "packFile": "pack-0.1.1.json",
+    "packFileSha256": "E9113FA7E9FF4199A420E05E346FDDFE820F68FB05EBEEA0A82FB89BC7EE3F42",
+    "controlIds": [
+        "ENT-001",
+        "EXO-001",
+        "TEAM-001",
+        "SPO-001",
+        "PP-001",
+        "INT-001",
+        "MDI-001",
+        "MDO-001",
+        "MDE-001",
+        "MDCA-001",
+        "XDR-001",
+        "PUR-001",
+        "AZR-001"
+    ],
+    "requiredAcceptanceCases": [
+        "matching-candidate",
+        "mismatching-candidate",
+        "denied",
+        "partial",
+        "stale",
+        "unsupported",
+        "missing-license",
+        "manual"
+    ],
+    "traceabilitySource": "pack-0.1.1.json",
+    "sourceProvenanceSource": "pack-0.1.1.json"
 }

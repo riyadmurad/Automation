@@ -1,46 +1,126 @@
 {
-  "environmentClass": "production",
-  "deploymentMode": "",
-  "location": "",
-  "networkPlan": { "vnetCidr": "", "webAca": "", "apiAca": "", "postgres": "", "privateEndpoints": "" },
-  "customerWorkerBindings": [],
-  "windowsWorkerManifestDigests": [],
-  "serviceBusSku": "",
-  "images": {
-    "web": "",
-    "api": "",
-    "assessment": "",
-    "remediation": ""
-  },
-  "privateAccess": {
-    "postgres": false,
-    "blob": false,
-    "keyVault": false,
-    "serviceBus": false,
-    "apiIngressPublic": true,
-    "separateWebPerimeter": false
-  },
-  "postgresAppRole": {
-    "name": "platform_app",
-    "superuser": false,
-    "createDatabase": false,
-    "createRole": false,
-    "bypassRls": false,
-    "rowLevelSecurity": true,
-    "forceRowLevelSecurity": true
-  },
-  "identities": {
-    "web": { "roles": [], "credentialPurpose": null, "credentialTenantIds": [], "verifiedManifestDigests": [] },
-    "api": { "roles": [], "credentialPurpose": null, "credentialTenantIds": [], "verifiedManifestDigests": [] },
-    "assessment": { "roles": [], "credentialPurpose": "assessment", "credentialTenantIds": [], "verifiedManifestDigests": [] },
-    "remediation": { "roles": [], "credentialPurpose": "remediation", "credentialTenantIds": [], "verifiedManifestDigests": [] }
-  },
-  "approvals": {
-    "region": { "approved": false, "reference": "", "approvedBy": "", "approvedAtUtc": "", "approvedRegion": "" },
-    "networkProfile": { "approved": false, "reference": "", "approvedBy": "", "approvedAtUtc": "", "profileId": "", "egressPolicyReference": "", "firewallPrivateIp": "", "approvedMicrosoftApiFqdns": [] },
-    "premiumCapacityCost": { "approved": false, "reference": "", "approvedBy": "", "approvedAtUtc": "", "sku": "Premium", "messagingUnits": null, "workloadProfileId": "", "estimateSource": "", "estimatedMonthlyCost": null, "currency": "" },
-    "budget": { "approved": false, "reference": "", "approvedBy": "", "approvedAtUtc": "", "monthlyLimit": null, "currency": "" },
-    "retention": { "approved": false, "reference": "", "approvedBy": "", "approvedAtUtc": "", "evidenceDays": null, "auditDays": null, "backupDays": null, "postgresGeoRedundantBackup": "" },
-    "productionSlo": { "approved": false, "reference": "", "approvedBy": "", "approvedAtUtc": "", "availabilityPercent": null, "queueAgeAlertSeconds": null, "jobTimeoutSeconds": null, "perCustomerConcurrency": null, "maxTransientRetries": null, "recoveryRtoHours": null, "recoveryRpoMinutes": null }
-  }
+    "environmentClass": "production",
+    "deploymentMode": "",
+    "location": "",
+    "networkPlan": {
+        "vnetCidr": "",
+        "webAca": "",
+        "apiAca": "",
+        "postgres": "",
+        "privateEndpoints": ""
+    },
+    "customerWorkerBindings": [],
+    "windowsWorkerManifestDigests": [],
+    "serviceBusSku": "",
+    "images": {
+        "web": "",
+        "api": "",
+        "assessment": "",
+        "remediation": ""
+    },
+    "privateAccess": {
+        "postgres": false,
+        "blob": false,
+        "keyVault": false,
+        "serviceBus": false,
+        "apiIngressPublic": true,
+        "separateWebPerimeter": false
+    },
+    "postgresAppRole": {
+        "name": "platform_app",
+        "superuser": false,
+        "createDatabase": false,
+        "createRole": false,
+        "bypassRls": false,
+        "rowLevelSecurity": true,
+        "forceRowLevelSecurity": true
+    },
+    "identities": {
+        "web": {
+            "roles": [],
+            "credentialPurpose": null,
+            "credentialTenantIds": [],
+            "verifiedManifestDigests": []
+        },
+        "api": {
+            "roles": [],
+            "credentialPurpose": null,
+            "credentialTenantIds": [],
+            "verifiedManifestDigests": []
+        },
+        "assessment": {
+            "roles": [],
+            "credentialPurpose": "assessment",
+            "credentialTenantIds": [],
+            "verifiedManifestDigests": []
+        },
+        "remediation": {
+            "roles": [],
+            "credentialPurpose": "remediation",
+            "credentialTenantIds": [],
+            "verifiedManifestDigests": []
+        }
+    },
+    "approvals": {
+        "region": {
+            "approved": false,
+            "reference": "",
+            "approvedBy": "",
+            "approvedAtUtc": "",
+            "approvedRegion": ""
+        },
+        "networkProfile": {
+            "approved": false,
+            "reference": "",
+            "approvedBy": "",
+            "approvedAtUtc": "",
+            "profileId": "",
+            "egressPolicyReference": "",
+            "firewallPrivateIp": "",
+            "approvedMicrosoftApiFqdns": []
+        },
+        "premiumCapacityCost": {
+            "approved": false,
+            "reference": "",
+            "approvedBy": "",
+            "approvedAtUtc": "",
+            "sku": "Premium",
+            "messagingUnits": null,
+            "workloadProfileId": "",
+            "estimateSource": "",
+            "estimatedMonthlyCost": null,
+            "currency": ""
+        },
+        "budget": {
+            "approved": false,
+            "reference": "",
+            "approvedBy": "",
+            "approvedAtUtc": "",
+            "monthlyLimit": null,
+            "currency": ""
+        },
+        "retention": {
+            "approved": false,
+            "reference": "",
+            "approvedBy": "",
+            "approvedAtUtc": "",
+            "evidenceDays": null,
+            "auditDays": null,
+            "backupDays": null,
+            "postgresGeoRedundantBackup": ""
+        },
+        "productionSlo": {
+            "approved": false,
+            "reference": "",
+            "approvedBy": "",
+            "approvedAtUtc": "",
+            "availabilityPercent": null,
+            "queueAgeAlertSeconds": null,
+            "jobTimeoutSeconds": null,
+            "perCustomerConcurrency": null,
+            "maxTransientRetries": null,
+            "recoveryRtoHours": null,
+            "recoveryRpoMinutes": null
+        }
+    }
 }

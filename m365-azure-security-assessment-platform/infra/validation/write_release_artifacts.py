@@ -29,7 +29,8 @@ def parse_assignments(values: list[str], option: str) -> dict[str, str]:
     for value in values:
         name, separator, content = value.partition("=")
         if not separator or name not in IMAGE_NAMES or not content or name in parsed:
-            raise ValueError(f"{option} expects unique name=value pairs for {', '.join(IMAGE_NAMES)}")
+            raise ValueError(
+                f"{option} expects unique name=value pairs for {', '.join(IMAGE_NAMES)}")
         parsed[name] = content
     return parsed
 
@@ -80,8 +81,10 @@ def create_artifacts(
     }
 
     output_directory.mkdir(parents=True, exist_ok=True)
-    (output_directory / "release-manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
-    (output_directory / "build-metadata.json").write_text(json.dumps(build_metadata, indent=2) + "\n", encoding="utf-8")
+    (output_directory / "release-manifest.json").write_text(json.dumps(manifest,
+                                                                       indent=2) + "\n", encoding="utf-8")
+    (output_directory / "build-metadata.json").write_text(json.dumps(build_metadata,
+                                                                     indent=2) + "\n", encoding="utf-8")
     return []
 
 
@@ -97,10 +100,13 @@ def main() -> int:
     arguments = parser.parse_args()
 
     try:
-        local_digests = parse_assignments(arguments.local_digest, "--local-digest")
-        promotion_references = parse_assignments(arguments.promotion_reference, "--promotion-reference")
+        local_digests = parse_assignments(
+            arguments.local_digest, "--local-digest")
+        promotion_references = parse_assignments(
+            arguments.promotion_reference, "--promotion-reference")
         if bool(local_digests) and bool(promotion_references):
-            raise ValueError("a manifest cannot mix local image config digests and registry promotion references")
+            raise ValueError(
+                "a manifest cannot mix local image config digests and registry promotion references")
     except ValueError as error:
         print(f"ERROR: {error}", file=sys.stderr)
         return 2

@@ -28,11 +28,11 @@ Each setting in a multi-setting operation gets its own event and shares the oper
 
 Typical event progression is append-only:
 
-| Event | Outcome | Previous | Requested | Verified |
-| --- | --- | --- | --- | --- |
-| Intent | `requested` | the pre-write observed value | the approved setting value | `unknown` |
-| Result after a lost response | `unknown` | the same pre-write value | the same requested value | `absent` or `unknown` |
-| Reconciliation | `verified`, `failed`, or still `unknown` | the newly observed value when known | `unknown` (no new write) | the separately observed effective value |
+| Event                        | Outcome                                  | Previous                            | Requested                  | Verified                                |
+| ---------------------------- | ---------------------------------------- | ----------------------------------- | -------------------------- | --------------------------------------- |
+| Intent                       | `requested`                              | the pre-write observed value        | the approved setting value | `unknown`                               |
+| Result after a lost response | `unknown`                                | the same pre-write value            | the same requested value   | `absent` or `unknown`                   |
+| Reconciliation               | `verified`, `failed`, or still `unknown` | the newly observed value when known | `unknown` (no new write)   | the separately observed effective value |
 
 Reconciliation appends a new event using the original operation correlation; it never edits the intent or changes an unknown result into a success. Verification after a known service response is likewise a distinct event and records the post-write observed value rather than copying the requested value.
 

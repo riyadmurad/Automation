@@ -13,7 +13,7 @@ public sealed class AssessmentAcceptanceTests
 {
     private static readonly DateTimeOffset CollectedAt = DateTimeOffset.Parse("2026-11-02T10:15:00Z");
     private static readonly DateTimeOffset Now = CollectedAt.AddMinutes(1);
-    private const string FrozenPackSha256 = "D52A248899C3C3B27FCA91C738AAC6C237978E3EA0618F47CE9E96F692168AE4";
+    private const string FrozenPackSha256 = "E9113FA7E9FF4199A420E05E346FDDFE820F68FB05EBEEA0A82FB89BC7EE3F42";
     private static readonly string[] FixtureCaseNames =
     [
         "matching-candidate", "mismatching-candidate", "denied", "partial", "stale", "unsupported",

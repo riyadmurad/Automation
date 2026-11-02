@@ -1,64 +1,915 @@
 {
-  "schemaVersion": "1.0",
-  "packId": "m365-azure-security-initial",
-  "version": "0.1.0",
-  "reviewState": "pendingReview",
-  "containsExecutableContent": false,
-  "containsSourceText": false,
-  "sources": [
-    { "id": "SRC-ENT-001", "sourceOrganization": "CISA SCuBA", "classification": "cisaScuba", "requestedUrl": "https://github.com/cisagov/ScubaGear", "resolvedUrl": "https://github.com/cisagov/ScubaGear", "httpStatus": 200, "retrievalStatus": "retrieved", "retrievedAtUtc": "2026-11-02T10:10:04.4489840Z", "contentType": "text/html; charset=utf-8", "etag": "W/\"84e69a65a09c575bb8eace52253b534b\"", "lastModifiedUtc": null, "responseByteLength": 370326, "responseSha256": "bf53da1e2b8c61d7e70c805d057871da6413d76b4ef0f73a8ae7a867d5aac60a", "sourceRevision": "sha256:bf53da1e2b8c61d7e70c805d057871da6413d76b4ef0f73a8ae7a867d5aac60a", "rightsStatus": "citationOnly", "contentIncluded": false, "reviewState": "pendingReview", "reviewNote": "Repository landing page hash only; no ScubaGear release or control file revision was qualified." },
-    { "id": "SRC-EXO-001", "sourceOrganization": "Microsoft", "classification": "microsoftGuidance", "requestedUrl": "https://learn.microsoft.com/defender-office-365/outbound-spam-policies-external-email-forwarding", "resolvedUrl": "https://learn.microsoft.com/en-us/defender-office-365/outbound-spam-policies-external-email-forwarding", "httpStatus": 200, "retrievalStatus": "retrieved", "retrievedAtUtc": "2026-11-02T10:10:04.8840000Z", "contentType": "text/html", "etag": "\"7CpSioGPBuOckNr9ONnw4Behb6c=\"", "lastModifiedUtc": "2026-10-29T17:36:59Z", "responseByteLength": 59776, "responseSha256": "b90cff8bbaf41272986735793df1c664e01e78c925afec52682457f77e86ef6e", "sourceRevision": "sha256:b90cff8bbaf41272986735793df1c664e01e78c925afec52682457f77e86ef6e", "rightsStatus": "citationOnly", "contentIncluded": false, "reviewState": "pendingReview", "reviewNote": "Guidance describes external forwarding policy controls; the disabled value remains an organization policy choice pending review." },
-    { "id": "SRC-TEAM-001", "sourceOrganization": "Microsoft", "classification": "microsoftGuidance", "requestedUrl": "https://learn.microsoft.com/microsoftteams/meeting-policies-in-teams", "resolvedUrl": "https://learn.microsoft.com/en-us/microsoftteams/settings-policies-reference#meetings", "httpStatus": 200, "retrievalStatus": "retrieved", "retrievedAtUtc": "2026-11-02T10:10:05.3832382Z", "contentType": "text/html", "etag": "\"OYz/X0734drM6V0hxBnx21NESMw=\"", "lastModifiedUtc": "2026-09-16T22:34:51Z", "responseByteLength": 192106, "responseSha256": "a5c0adde0087769269e42bc0289130699f57eed4718b22093f3b5f212ce369e2", "sourceRevision": "sha256:a5c0adde0087769269e42bc0289130699f57eed4718b22093f3b5f212ce369e2", "rightsStatus": "citationOnly", "contentIncluded": false, "reviewState": "pendingReview", "reviewNote": "Original URL redirects to the current meetings policy reference; anonymous join disabled is an organization policy choice." },
-    { "id": "SRC-SPO-001", "sourceOrganization": "Microsoft", "classification": "microsoftGuidance", "requestedUrl": "https://learn.microsoft.com/en-us/sharepoint/change-default-sharing-link", "resolvedUrl": "https://learn.microsoft.com/en-us/sharepoint/change-default-sharing-link", "httpStatus": 200, "retrievalStatus": "retrieved", "retrievedAtUtc": "2026-11-02T10:11:50.4888327Z", "contentType": "text/html", "etag": "\"0GHPiYnFVPdC4fq7+qJjuKlQc1U=\"", "lastModifiedUtc": "2026-08-24T17:40:54Z", "responseByteLength": 52215, "responseSha256": "3010741c10d8a7cc74f0c65cabba692e863690233310f708480b4e78f642f7b4", "sourceRevision": "sha256:3010741c10d8a7cc74f0c65cabba692e863690233310f708480b4e78f642f7b4", "rightsStatus": "citationOnly", "contentIncluded": false, "reviewState": "pendingReview", "reviewNote": "Current page allows Anyone links and advises against making them the default; organization/view is a customer policy candidate, not a universal mandate." },
-    { "id": "SRC-PP-001", "sourceOrganization": "Microsoft", "classification": "microsoftGuidance", "requestedUrl": "https://learn.microsoft.com/power-platform/admin/wp-data-loss-prevention", "resolvedUrl": "https://learn.microsoft.com/en-us/power-platform/admin/wp-data-loss-prevention", "httpStatus": 200, "retrievalStatus": "retrieved", "retrievedAtUtc": "2026-11-02T10:10:06.2233832Z", "contentType": "text/html", "etag": "\"SS98pRujfgiQehCPbGMm59P2qW0=\"", "lastModifiedUtc": "2026-10-16T01:05:24Z", "responseByteLength": 56518, "responseSha256": "46efd7e8f2622623b57d60fcd38b52354b048ae6afa3e1e1f4c687f6893f37be", "sourceRevision": "sha256:46efd7e8f2622623b57d60fcd38b52354b048ae6afa3e1e1f4c687f6893f37be", "rightsStatus": "citationOnly", "contentIncluded": false, "reviewState": "pendingReview", "reviewNote": "DLP capabilities are documented; required environment and connector policy must be customer-defined." },
-    { "id": "SRC-INT-001", "sourceOrganization": "Microsoft", "classification": "microsoftGuidance", "requestedUrl": "https://learn.microsoft.com/mem/intune/protect/device-compliance-get-started", "resolvedUrl": "https://learn.microsoft.com/en-us/intune/device-security/compliance/overview", "httpStatus": 200, "retrievalStatus": "retrieved", "retrievedAtUtc": "2026-11-02T10:10:06.9414177Z", "contentType": "text/html", "etag": "\"KlGryqWiq0zN2EZ+0eJx4ckaiPo=\"", "lastModifiedUtc": "2026-10-29T17:32:27Z", "responseByteLength": 65517, "responseSha256": "2dfd65979e34a5b49cea535240d9e1571f539196f3a38b3c278df1037a528fe0", "sourceRevision": "sha256:2dfd65979e34a5b49cea535240d9e1571f539196f3a38b3c278df1037a528fe0", "rightsStatus": "citationOnly", "contentIncluded": false, "reviewState": "pendingReview", "reviewNote": "Compliance policy behavior is documented; the complete expected device inventory is organization-owned evidence." },
-    { "id": "SRC-MDI-001", "sourceOrganization": "Microsoft", "classification": "microsoftGuidance", "requestedUrl": "https://learn.microsoft.com/defender-for-identity/deploy/configure-sensor-settings", "resolvedUrl": "https://learn.microsoft.com/en-us/defender-for-identity/deploy/configure-sensor-settings", "httpStatus": 200, "retrievalStatus": "retrieved", "retrievedAtUtc": "2026-11-02T10:10:07.4288831Z", "contentType": "text/html", "etag": "\"CRbFFOu0RWFS4CSJ/WGbR52tzpA=\"", "lastModifiedUtc": "2026-10-29T17:36:57Z", "responseByteLength": 56367, "responseSha256": "47a3a283b39fb80246d83ea5ef19b1e3ec742faf5bd3e67d55ebe4206f2a54ad", "sourceRevision": "sha256:47a3a283b39fb80246d83ea5ef19b1e3ec742faf5bd3e67d55ebe4206f2a54ad", "rightsStatus": "citationOnly", "contentIncluded": false, "reviewState": "pendingReview", "reviewNote": "Sensor settings are documented; expected domain controller inventory and health evidence path remain customer/runtime dependent." },
-    { "id": "SRC-MDO-001", "sourceOrganization": "Microsoft", "classification": "microsoftGuidance", "requestedUrl": "https://learn.microsoft.com/defender-office-365/safe-links-policies-configure", "resolvedUrl": "https://learn.microsoft.com/en-us/defender-office-365/safe-links-policies-configure", "httpStatus": 200, "retrievalStatus": "retrieved", "retrievedAtUtc": "2026-11-02T10:10:07.7427801Z", "contentType": "text/html", "etag": "\"BSQ6+bdTi4PNRXvJtjqG2Ma8EHA=\"", "lastModifiedUtc": "2026-10-29T17:37:00Z", "responseByteLength": 103503, "responseSha256": "62cf72ecefac54c8423d46133647ca01765f544dce05de9fe4516a3290629523", "sourceRevision": "sha256:62cf72ecefac54c8423d46133647ca01765f544dce05de9fe4516a3290629523", "rightsStatus": "citationOnly", "contentIncluded": false, "reviewState": "pendingReview", "reviewNote": "Safe Links policy settings are documented; click-through policy and effective recipient precedence require customer review." },
-    { "id": "SRC-MDE-001", "sourceOrganization": "Microsoft", "classification": "microsoftGuidance", "requestedUrl": "https://learn.microsoft.com/en-us/defender-endpoint/prevent-changes-to-security-settings-with-tamper-protection", "resolvedUrl": "https://learn.microsoft.com/en-us/defender-endpoint/tamper-protection-overview", "httpStatus": 200, "retrievalStatus": "retrieved", "retrievedAtUtc": "2026-11-02T10:11:50.9121650Z", "contentType": "text/html", "etag": "\"lM664DSypMFrdzIvk4HWpV/kmAw=\"", "lastModifiedUtc": "2026-10-29T17:36:51Z", "responseByteLength": 70469, "responseSha256": "23549a56a81173f89e5f7b78d47a51e811e06b94b1a7c750eff4d1580ebce6e3", "sourceRevision": "sha256:23549a56a81173f89e5f7b78d47a51e811e06b94b1a7c750eff4d1580ebce6e3", "rightsStatus": "citationOnly", "contentIncluded": false, "reviewState": "pendingReview", "reviewNote": "Current tamper-protection overview retrieved; expected device coverage and readable effective-state path remain unqualified." },
-    { "id": "SRC-MDCA-001", "sourceOrganization": "Microsoft", "classification": "microsoftGuidance", "requestedUrl": "https://learn.microsoft.com/en-us/defender-cloud-apps/proxy-intro-aad", "resolvedUrl": "https://learn.microsoft.com/en-us/defender-cloud-apps/proxy-intro-aad", "httpStatus": 200, "retrievalStatus": "retrieved", "retrievedAtUtc": "2026-11-02T10:13:09.9076520Z", "contentType": "text/html", "etag": "\"IOcN0QE5YapEYIgrWx/gLwGCDGs=\"", "lastModifiedUtc": "2026-10-29T17:36:56Z", "responseByteLength": 58359, "responseSha256": "148dfc4ef22e3fedf8c7df51c0e2179a7c3cbdcb4b37ace97ade28afdd3e957c", "sourceRevision": "sha256:148dfc4ef22e3fedf8c7df51c0e2179a7c3cbdcb4b37ace97ade28afdd3e957c", "rightsStatus": "citationOnly", "contentIncluded": false, "reviewState": "pendingReview", "reviewNote": "Current page documents Conditional Access app control, not the governance policy-to-app coverage rule; that expectation is unresolved." },
-    { "id": "SRC-XDR-001", "sourceOrganization": "Microsoft", "classification": "microsoftGuidance", "requestedUrl": "https://learn.microsoft.com/defender-xdr/microsoft-365-defender", "resolvedUrl": "https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender", "httpStatus": 200, "retrievalStatus": "retrieved", "retrievedAtUtc": "2026-11-02T10:10:08.6625454Z", "contentType": "text/html", "etag": "\"IOw4TXeMusYV394+yPCS3qw4WOM=\"", "lastModifiedUtc": "2026-10-29T17:37:02Z", "responseByteLength": 56072, "responseSha256": "3fbc0d30b1cc0c39ec877a3ccbb4f066f3b9128636c8f2dd4c31b39ea0725f62", "sourceRevision": "sha256:3fbc0d30b1cc0c39ec877a3ccbb4f066f3b9128636c8f2dd4c31b39ea0725f62", "rightsStatus": "citationOnly", "contentIncluded": false, "reviewState": "pendingReview", "reviewNote": "Overview identifies the product; it does not qualify a direct integration API or organization-specific expected licensed-product set." },
-    { "id": "SRC-PUR-001", "sourceOrganization": "Microsoft", "classification": "microsoftGuidance", "requestedUrl": "https://learn.microsoft.com/purview/audit-log-enable-disable", "resolvedUrl": "https://learn.microsoft.com/en-us/purview/audit-log-enable-disable", "httpStatus": 200, "retrievalStatus": "retrieved", "retrievedAtUtc": "2026-11-02T10:10:09.1897572Z", "contentType": "text/html", "etag": "\"81TDHQrxcl3aGeb62emRzzdH23M=\"", "lastModifiedUtc": "2026-08-24T07:31:41Z", "responseByteLength": 56331, "responseSha256": "0f87146547da53877ce5e4428ad83771620fddf5d7440df42e7d002f1799d31c", "sourceRevision": "sha256:0f87146547da53877ce5e4428ad83771620fddf5d7440df42e7d002f1799d31c", "rightsStatus": "citationOnly", "contentIncluded": false, "reviewState": "pendingReview", "reviewNote": "Audit enablement and prerequisites are documented; enablement and freshness remain scoped policy/evidence assertions pending review." },
-    { "id": "SRC-AZR-001", "sourceOrganization": "Microsoft", "classification": "microsoftGuidance", "requestedUrl": "https://learn.microsoft.com/azure/storage/common/storage-require-secure-transfer", "resolvedUrl": "https://learn.microsoft.com/en-us/azure/storage/common/storage-require-secure-transfer", "httpStatus": 200, "retrievalStatus": "retrieved", "retrievedAtUtc": "2026-11-02T10:10:09.6133463Z", "contentType": "text/html", "etag": "\"5VcOhWO3Gdx1VI3vhBxLEdSbZKk=\"", "lastModifiedUtc": "2026-10-26T11:48:28Z", "responseByteLength": 55255, "responseSha256": "f02ed635f5f1f77c81ee13e627ce02f0aa27fd480d3812167783e9883d64a1dc", "sourceRevision": "sha256:f02ed635f5f1f77c81ee13e627ce02f0aa27fd480d3812167783e9883d64a1dc", "rightsStatus": "citationOnly", "contentIncluded": false, "reviewState": "pendingReview", "reviewNote": "Secure transfer behavior is documented; exact expected account inventory and ARM query scope remain organization-owned and unqualified." }
-  ],
-  "controls": [
-    {
-      "id": "ENT-001", "service": "Entra ID", "specificationScenario": "ENT-001 privileged roles are covered", "implementationTask": "8.1", "fixtureFamily": "control_ENT-001_<case>", "sourceId": "SRC-ENT-001", "expectedStateClassification": "unresolved", "reviewState": "pendingReview", "rightsApproved": false, "supportMode": "manual/unverified", "operationQualified": false, "requiresExpectedInventory": true, "requiredInventories": ["privilegedRoles"], "requiredFields": ["privileged_role_ids", "covered_role_ids", "excluded_principal_ids", "emergency_registry_ids", "unknown_scope_count"], "rules": [{ "field": "privileged_role_ids", "operator": "equalsExpectedInventory", "relatedField": "privilegedRoles" }, { "field": "covered_role_ids", "operator": "equalsField", "relatedField": "privileged_role_ids" }, { "field": "excluded_principal_ids", "operator": "isSubsetOfField", "relatedField": "emergency_registry_ids" }, { "field": "unknown_scope_count", "operator": "isZero" }], "permissionPrerequisites": ["Unverified; confirm documented read permissions before activation."], "licensePrerequisites": ["Unverified; confirm applicable customer entitlements before activation."], "runtimePrerequisites": ["CISA repository release and exact control file revision not qualified."], "expectedStateReviewNote": "The repository landing page is not a pinned control baseline. Privileged-role inventory and coverage semantics require source review and customer emergency registry approval.", "maximumEvidenceAgeHours": null
-    },
-    {
-      "id": "EXO-001", "service": "Exchange Online", "specificationScenario": "EXO-001 external forwarding is disabled", "implementationTask": "8.3", "fixtureFamily": "control_EXO-001_<case>", "sourceId": "SRC-EXO-001", "expectedStateClassification": "customerPolicyCandidate", "reviewState": "pendingReview", "rightsApproved": false, "supportMode": "manual/unverified", "operationQualified": false, "requiresExpectedInventory": false, "requiredInventories": [], "requiredFields": ["external_auto_forwarding_allowed", "scope_complete"], "rules": [{ "field": "external_auto_forwarding_allowed", "operator": "isFalse" }, { "field": "scope_complete", "operator": "isTrue" }], "permissionPrerequisites": ["Unverified; confirm documented read permissions before activation."], "licensePrerequisites": ["Unverified; confirm applicable customer entitlements before activation."], "runtimePrerequisites": ["No Exchange API or PowerShell operation has been qualified."], "expectedStateReviewNote": "Microsoft documents controls for external forwarding; false is retained as a customer policy candidate, not a source-mandated universal value.", "maximumEvidenceAgeHours": null
-    },
-    {
-      "id": "TEAM-001", "service": "Teams", "specificationScenario": "TEAM-001 anonymous meeting join is disabled", "implementationTask": "8.4", "fixtureFamily": "control_TEAM-001_<case>", "sourceId": "SRC-TEAM-001", "expectedStateClassification": "customerPolicyCandidate", "reviewState": "pendingReview", "rightsApproved": false, "supportMode": "manual/unverified", "operationQualified": false, "requiresExpectedInventory": false, "requiredInventories": [], "requiredFields": ["anonymous_meeting_join_allowed", "policy_assignment_complete"], "rules": [{ "field": "anonymous_meeting_join_allowed", "operator": "isFalse" }, { "field": "policy_assignment_complete", "operator": "isTrue" }], "permissionPrerequisites": ["Unverified; confirm documented read permissions before activation."], "licensePrerequisites": ["Unverified; confirm applicable customer entitlements before activation."], "runtimePrerequisites": ["No Teams API or PowerShell operation has been qualified."], "expectedStateReviewNote": "Meeting policy settings and assignment are documented; anonymous join disabled is a customer policy candidate pending effective-scope review.", "maximumEvidenceAgeHours": null
-    },
-    {
-      "id": "SPO-001", "service": "SharePoint and OneDrive", "specificationScenario": "SPO-001 default links use organization view access", "implementationTask": "8.6", "fixtureFamily": "control_SPO-001_<case>", "sourceId": "SRC-SPO-001", "expectedStateClassification": "customerPolicyCandidate", "reviewState": "pendingReview", "rightsApproved": false, "supportMode": "manual/unverified", "operationQualified": false, "requiresExpectedInventory": false, "requiredInventories": [], "requiredFields": ["default_link_audience", "default_link_permission", "scope_complete"], "rules": [{ "field": "default_link_audience", "operator": "equalsLiteral", "literal": { "kind": "string", "value": "organization" } }, { "field": "default_link_permission", "operator": "equalsLiteral", "literal": { "kind": "string", "value": "view" } }, { "field": "scope_complete", "operator": "isTrue" }], "permissionPrerequisites": ["Unverified; confirm documented read permissions before activation."], "licensePrerequisites": ["Unverified; confirm applicable customer entitlements before activation."], "runtimePrerequisites": ["Tenant and site-level read paths are unverified."], "expectedStateReviewNote": "Microsoft describes available link types and cautions against Anyone as the default; organization/view is a customer policy choice. Tenant defaults do not prove site-level coverage.", "maximumEvidenceAgeHours": null
-    },
-    {
-      "id": "PP-001", "service": "Power Platform and Power Automate", "specificationScenario": "PP-001 DLP covers expected environments", "implementationTask": "9.1", "fixtureFamily": "control_PP-001_<case>", "sourceId": "SRC-PP-001", "expectedStateClassification": "customerPolicyCandidate", "reviewState": "pendingReview", "rightsApproved": false, "supportMode": "manual/unverified", "operationQualified": false, "requiresExpectedInventory": true, "requiredInventories": ["environments", "blockedProhibitedPairs"], "requiredFields": ["expected_environment_ids", "covered_environment_ids", "dlp_enabled", "prohibited_connector_pair_tests"], "rules": [{ "field": "expected_environment_ids", "operator": "equalsExpectedInventory", "relatedField": "environments" }, { "field": "covered_environment_ids", "operator": "equalsExpectedInventory", "relatedField": "environments" }, { "field": "dlp_enabled", "operator": "isTrue" }, { "field": "prohibited_connector_pair_tests", "operator": "equalsExpectedInventory", "relatedField": "blockedProhibitedPairs" }], "permissionPrerequisites": ["Unverified; confirm documented read permissions before activation."], "licensePrerequisites": ["Unverified; confirm applicable customer entitlements before activation."], "runtimePrerequisites": ["No environment/DLP collector has been qualified."], "expectedStateReviewNote": "Environment scope and prohibited connector pairs are customer-defined; observed tests must explicitly identify blocked pairs.", "maximumEvidenceAgeHours": null
-    },
-    {
-      "id": "INT-001", "service": "Intune", "specificationScenario": "INT-001 expected devices are compliant", "implementationTask": "9.3", "fixtureFamily": "control_INT-001_<case>", "sourceId": "SRC-INT-001", "expectedStateClassification": "customerPolicyCandidate", "reviewState": "pendingReview", "rightsApproved": false, "supportMode": "manual/unverified", "operationQualified": false, "requiresExpectedInventory": true, "requiredInventories": ["devices"], "requiredFields": ["expected_device_ids", "compliant_device_ids", "pending_device_ids", "failed_device_ids", "unassigned_device_ids"], "rules": [{ "field": "expected_device_ids", "operator": "equalsExpectedInventory", "relatedField": "devices" }, { "field": "compliant_device_ids", "operator": "equalsExpectedInventory", "relatedField": "devices" }, { "field": "pending_device_ids", "operator": "isEmpty" }, { "field": "failed_device_ids", "operator": "isEmpty" }, { "field": "unassigned_device_ids", "operator": "isEmpty" }], "permissionPrerequisites": ["Unverified; confirm documented read permissions before activation."], "licensePrerequisites": ["Unverified; confirm applicable customer entitlements before activation."], "runtimePrerequisites": ["No Intune effective deployment collector has been qualified."], "expectedStateReviewNote": "The expected device inventory must be independently approved and sourced; policy existence or creation is not deployment coverage.", "maximumEvidenceAgeHours": null
-    },
-    {
-      "id": "MDI-001", "service": "Defender for Identity", "specificationScenario": "MDI-001 expected domain controllers have healthy sensors", "implementationTask": "10.1", "fixtureFamily": "control_MDI-001_<case>", "sourceId": "SRC-MDI-001", "expectedStateClassification": "customerPolicyCandidate", "reviewState": "pendingReview", "rightsApproved": false, "supportMode": "manual/unverified", "operationQualified": false, "requiresExpectedInventory": true, "requiredInventories": ["domainControllers"], "requiredFields": ["expected_domain_controller_ids", "healthy_sensor_ids", "unknown_sensor_ids"], "rules": [{ "field": "expected_domain_controller_ids", "operator": "equalsExpectedInventory", "relatedField": "domainControllers" }, { "field": "healthy_sensor_ids", "operator": "equalsExpectedInventory", "relatedField": "domainControllers" }, { "field": "unknown_sensor_ids", "operator": "isEmpty" }], "permissionPrerequisites": ["Unverified; confirm documented read permissions before activation."], "licensePrerequisites": ["Unverified; confirm applicable customer entitlements before activation."], "runtimePrerequisites": ["On-premises sensor coverage and runtime are not qualified."], "expectedStateReviewNote": "The customer owns the expected domain controller inventory; inaccessible sensor evidence remains unknown/manual.", "maximumEvidenceAgeHours": null
-    },
-    {
-      "id": "MDO-001", "service": "Defender for Office 365", "specificationScenario": "MDO-001 Safe Links covers expected recipients", "implementationTask": "10.2", "fixtureFamily": "control_MDO-001_<case>", "sourceId": "SRC-MDO-001", "expectedStateClassification": "customerPolicyCandidate", "reviewState": "pendingReview", "rightsApproved": false, "supportMode": "manual/unverified", "operationQualified": false, "requiresExpectedInventory": true, "requiredInventories": ["recipients"], "requiredFields": ["safe_links_enabled", "allow_click_through", "expected_recipient_ids", "covered_recipient_ids"], "rules": [{ "field": "safe_links_enabled", "operator": "isTrue" }, { "field": "allow_click_through", "operator": "isFalse" }, { "field": "expected_recipient_ids", "operator": "equalsExpectedInventory", "relatedField": "recipients" }, { "field": "covered_recipient_ids", "operator": "equalsExpectedInventory", "relatedField": "recipients" }], "permissionPrerequisites": ["Unverified; confirm documented read permissions before activation."], "licensePrerequisites": ["Unverified; confirm applicable Defender for Office 365 entitlement and policy precedence."], "runtimePrerequisites": ["No Safe Links scope collector has been qualified."], "expectedStateReviewNote": "Safe Links controls are documented; click-through, licensing, priority, exclusions, and expected recipients need customer-specific approval.", "maximumEvidenceAgeHours": null
-    },
-    {
-      "id": "MDE-001", "service": "Defender for Endpoint", "specificationScenario": "MDE-001 expected devices have tamper protection", "implementationTask": "10.3", "fixtureFamily": "control_MDE-001_<case>", "sourceId": "SRC-MDE-001", "expectedStateClassification": "customerPolicyCandidate", "reviewState": "pendingReview", "rightsApproved": false, "supportMode": "manual/unverified", "operationQualified": false, "requiresExpectedInventory": true, "requiredInventories": ["devices"], "requiredFields": ["expected_device_ids", "tamper_protected_device_ids", "unknown_device_ids"], "rules": [{ "field": "expected_device_ids", "operator": "equalsExpectedInventory", "relatedField": "devices" }, { "field": "tamper_protected_device_ids", "operator": "equalsExpectedInventory", "relatedField": "devices" }, { "field": "unknown_device_ids", "operator": "isEmpty" }], "permissionPrerequisites": ["Unverified; confirm documented read permissions before activation."], "licensePrerequisites": ["Unverified; confirm applicable customer entitlements before activation."], "runtimePrerequisites": ["No Defender for Endpoint effective-state collector has been qualified."], "expectedStateReviewNote": "Tamper protection guidance is pinned; exact device inventory, management authority, co-management, and readable state are unresolved.", "maximumEvidenceAgeHours": null
-    },
-    {
-      "id": "MDCA-001", "service": "Defender for Cloud Apps", "specificationScenario": "MDCA-001 governance policies cover expected apps", "implementationTask": "10.4", "fixtureFamily": "control_MDCA-001_<case>", "sourceId": "SRC-MDCA-001", "expectedStateClassification": "unresolved", "reviewState": "pendingReview", "rightsApproved": false, "supportMode": "manual/unverified", "operationQualified": false, "requiresExpectedInventory": true, "requiredInventories": ["apps"], "requiredFields": ["expected_app_ids", "covered_app_ids", "enabled_governance_policy_ids"], "rules": [{ "field": "expected_app_ids", "operator": "equalsExpectedInventory", "relatedField": "apps" }, { "field": "covered_app_ids", "operator": "equalsExpectedInventory", "relatedField": "apps" }, { "field": "enabled_governance_policy_ids", "operator": "isNonEmpty" }], "permissionPrerequisites": ["Unverified; confirm documented read permissions before activation."], "licensePrerequisites": ["Unverified; confirm applicable customer entitlements before activation."], "runtimePrerequisites": ["Current retrieved page concerns Conditional Access app control, not governance policy coverage."], "expectedStateReviewNote": "The cited governance policy source returns 404; the replacement page does not justify this expected state. Keep unsupported/manual until a relevant source and evidence model are reviewed.", "maximumEvidenceAgeHours": null
-    },
-    {
-      "id": "XDR-001", "service": "Defender XDR", "specificationScenario": "XDR-001 expected licensed products are integrated", "implementationTask": "10.5", "fixtureFamily": "control_XDR-001_<case>", "sourceId": "SRC-XDR-001", "expectedStateClassification": "unresolved", "reviewState": "pendingReview", "rightsApproved": false, "supportMode": "manual/unverified", "operationQualified": false, "requiresExpectedInventory": true, "requiredInventories": ["licensedProducts"], "requiredFields": ["expected_product_ids", "integrated_product_ids", "unknown_product_ids"], "rules": [{ "field": "expected_product_ids", "operator": "equalsExpectedInventory", "relatedField": "licensedProducts" }, { "field": "integrated_product_ids", "operator": "equalsExpectedInventory", "relatedField": "licensedProducts" }, { "field": "unknown_product_ids", "operator": "isEmpty" }], "permissionPrerequisites": ["Unverified; confirm documented read permissions before activation."], "licensePrerequisites": ["Expected product inventory and entitlements require customer verification."], "runtimePrerequisites": ["No XDR configuration operation has been qualified."], "expectedStateReviewNote": "Product overview does not define a universal integration requirement or API evidence; incidents are not configuration evidence.", "maximumEvidenceAgeHours": null
-    },
-    {
-      "id": "PUR-001", "service": "Purview", "specificationScenario": "PUR-001 unified audit logging is enabled", "implementationTask": "9.5", "fixtureFamily": "control_PUR-001_<case>", "sourceId": "SRC-PUR-001", "expectedStateClassification": "customerPolicyCandidate", "reviewState": "pendingReview", "rightsApproved": false, "supportMode": "manual/unverified", "operationQualified": false, "requiresExpectedInventory": false, "requiredInventories": [], "requiredFields": ["unified_audit_log_enabled", "evidence_fresh"], "rules": [{ "field": "unified_audit_log_enabled", "operator": "isTrue" }, { "field": "evidence_fresh", "operator": "isTrue" }], "permissionPrerequisites": ["Unverified; confirm documented read permissions before activation."], "licensePrerequisites": ["Unverified; confirm applicable Purview/Microsoft 365 entitlement."], "runtimePrerequisites": ["No audit configuration collector has been qualified."], "expectedStateReviewNote": "Audit guidance is pinned; enabling and freshness are customer policy/evidence expectations, not proof of regulatory certification.", "maximumEvidenceAgeHours": null
-    },
-    {
-      "id": "AZR-001", "service": "Azure", "specificationScenario": "AZR-001 expected storage accounts require secure transfer", "implementationTask": "11.1", "fixtureFamily": "control_AZR-001_<case>", "sourceId": "SRC-AZR-001", "expectedStateClassification": "customerPolicyCandidate", "reviewState": "pendingReview", "rightsApproved": false, "supportMode": "manual/unverified", "operationQualified": false, "requiresExpectedInventory": true, "requiredInventories": ["storageAccounts"], "requiredFields": ["expected_storage_account_ids", "secure_transfer_required_ids", "unknown_account_ids"], "rules": [{ "field": "expected_storage_account_ids", "operator": "equalsExpectedInventory", "relatedField": "storageAccounts" }, { "field": "secure_transfer_required_ids", "operator": "equalsExpectedInventory", "relatedField": "storageAccounts" }, { "field": "unknown_account_ids", "operator": "isEmpty" }], "permissionPrerequisites": ["Unverified; confirm documented ARM read permissions and delegated scope."], "licensePrerequisites": ["Unverified; confirm applicable Azure subscription features."], "runtimePrerequisites": ["No ARM operation or subscription/resource-group scope has been qualified."], "expectedStateReviewNote": "Secure transfer guidance is pinned; customer inventory and complete ARM scope are required, and no API operation is claimed.", "maximumEvidenceAgeHours": null
-    }
-  ]
+    "schemaVersion": "1.0",
+    "packId": "m365-azure-security-initial",
+    "version": "0.1.0",
+    "reviewState": "pendingReview",
+    "containsExecutableContent": false,
+    "containsSourceText": false,
+    "sources": [
+        {
+            "id": "SRC-ENT-001",
+            "sourceOrganization": "CISA SCuBA",
+            "classification": "cisaScuba",
+            "requestedUrl": "https://github.com/cisagov/ScubaGear",
+            "resolvedUrl": "https://github.com/cisagov/ScubaGear",
+            "httpStatus": 200,
+            "retrievalStatus": "retrieved",
+            "retrievedAtUtc": "2026-11-02T10:10:04.4489840Z",
+            "contentType": "text/html; charset=utf-8",
+            "etag": "W/\"84e69a65a09c575bb8eace52253b534b\"",
+            "lastModifiedUtc": null,
+            "responseByteLength": 370326,
+            "responseSha256": "bf53da1e2b8c61d7e70c805d057871da6413d76b4ef0f73a8ae7a867d5aac60a",
+            "sourceRevision": "sha256:bf53da1e2b8c61d7e70c805d057871da6413d76b4ef0f73a8ae7a867d5aac60a",
+            "rightsStatus": "citationOnly",
+            "contentIncluded": false,
+            "reviewState": "pendingReview",
+            "reviewNote": "Repository landing page hash only; no ScubaGear release or control file revision was qualified."
+        },
+        {
+            "id": "SRC-EXO-001",
+            "sourceOrganization": "Microsoft",
+            "classification": "microsoftGuidance",
+            "requestedUrl": "https://learn.microsoft.com/defender-office-365/outbound-spam-policies-external-email-forwarding",
+            "resolvedUrl": "https://learn.microsoft.com/en-us/defender-office-365/outbound-spam-policies-external-email-forwarding",
+            "httpStatus": 200,
+            "retrievalStatus": "retrieved",
+            "retrievedAtUtc": "2026-11-02T10:10:04.8840000Z",
+            "contentType": "text/html",
+            "etag": "\"7CpSioGPBuOckNr9ONnw4Behb6c=\"",
+            "lastModifiedUtc": "2026-10-29T17:36:59Z",
+            "responseByteLength": 59776,
+            "responseSha256": "b90cff8bbaf41272986735793df1c664e01e78c925afec52682457f77e86ef6e",
+            "sourceRevision": "sha256:b90cff8bbaf41272986735793df1c664e01e78c925afec52682457f77e86ef6e",
+            "rightsStatus": "citationOnly",
+            "contentIncluded": false,
+            "reviewState": "pendingReview",
+            "reviewNote": "Guidance describes external forwarding policy controls; the disabled value remains an organization policy choice pending review."
+        },
+        {
+            "id": "SRC-TEAM-001",
+            "sourceOrganization": "Microsoft",
+            "classification": "microsoftGuidance",
+            "requestedUrl": "https://learn.microsoft.com/microsoftteams/meeting-policies-in-teams",
+            "resolvedUrl": "https://learn.microsoft.com/en-us/microsoftteams/settings-policies-reference#meetings",
+            "httpStatus": 200,
+            "retrievalStatus": "retrieved",
+            "retrievedAtUtc": "2026-11-02T10:10:05.3832382Z",
+            "contentType": "text/html",
+            "etag": "\"OYz/X0734drM6V0hxBnx21NESMw=\"",
+            "lastModifiedUtc": "2026-09-16T22:34:51Z",
+            "responseByteLength": 192106,
+            "responseSha256": "a5c0adde0087769269e42bc0289130699f57eed4718b22093f3b5f212ce369e2",
+            "sourceRevision": "sha256:a5c0adde0087769269e42bc0289130699f57eed4718b22093f3b5f212ce369e2",
+            "rightsStatus": "citationOnly",
+            "contentIncluded": false,
+            "reviewState": "pendingReview",
+            "reviewNote": "Original URL redirects to the current meetings policy reference; anonymous join disabled is an organization policy choice."
+        },
+        {
+            "id": "SRC-SPO-001",
+            "sourceOrganization": "Microsoft",
+            "classification": "microsoftGuidance",
+            "requestedUrl": "https://learn.microsoft.com/en-us/sharepoint/change-default-sharing-link",
+            "resolvedUrl": "https://learn.microsoft.com/en-us/sharepoint/change-default-sharing-link",
+            "httpStatus": 200,
+            "retrievalStatus": "retrieved",
+            "retrievedAtUtc": "2026-11-02T10:11:50.4888327Z",
+            "contentType": "text/html",
+            "etag": "\"0GHPiYnFVPdC4fq7+qJjuKlQc1U=\"",
+            "lastModifiedUtc": "2026-08-24T17:40:54Z",
+            "responseByteLength": 52215,
+            "responseSha256": "3010741c10d8a7cc74f0c65cabba692e863690233310f708480b4e78f642f7b4",
+            "sourceRevision": "sha256:3010741c10d8a7cc74f0c65cabba692e863690233310f708480b4e78f642f7b4",
+            "rightsStatus": "citationOnly",
+            "contentIncluded": false,
+            "reviewState": "pendingReview",
+            "reviewNote": "Current page allows Anyone links and advises against making them the default; organization/view is a customer policy candidate, not a universal mandate."
+        },
+        {
+            "id": "SRC-PP-001",
+            "sourceOrganization": "Microsoft",
+            "classification": "microsoftGuidance",
+            "requestedUrl": "https://learn.microsoft.com/power-platform/admin/wp-data-loss-prevention",
+            "resolvedUrl": "https://learn.microsoft.com/en-us/power-platform/admin/wp-data-loss-prevention",
+            "httpStatus": 200,
+            "retrievalStatus": "retrieved",
+            "retrievedAtUtc": "2026-11-02T10:10:06.2233832Z",
+            "contentType": "text/html",
+            "etag": "\"SS98pRujfgiQehCPbGMm59P2qW0=\"",
+            "lastModifiedUtc": "2026-10-16T01:05:24Z",
+            "responseByteLength": 56518,
+            "responseSha256": "46efd7e8f2622623b57d60fcd38b52354b048ae6afa3e1e1f4c687f6893f37be",
+            "sourceRevision": "sha256:46efd7e8f2622623b57d60fcd38b52354b048ae6afa3e1e1f4c687f6893f37be",
+            "rightsStatus": "citationOnly",
+            "contentIncluded": false,
+            "reviewState": "pendingReview",
+            "reviewNote": "DLP capabilities are documented; required environment and connector policy must be customer-defined."
+        },
+        {
+            "id": "SRC-INT-001",
+            "sourceOrganization": "Microsoft",
+            "classification": "microsoftGuidance",
+            "requestedUrl": "https://learn.microsoft.com/mem/intune/protect/device-compliance-get-started",
+            "resolvedUrl": "https://learn.microsoft.com/en-us/intune/device-security/compliance/overview",
+            "httpStatus": 200,
+            "retrievalStatus": "retrieved",
+            "retrievedAtUtc": "2026-11-02T10:10:06.9414177Z",
+            "contentType": "text/html",
+            "etag": "\"KlGryqWiq0zN2EZ+0eJx4ckaiPo=\"",
+            "lastModifiedUtc": "2026-10-29T17:32:27Z",
+            "responseByteLength": 65517,
+            "responseSha256": "2dfd65979e34a5b49cea535240d9e1571f539196f3a38b3c278df1037a528fe0",
+            "sourceRevision": "sha256:2dfd65979e34a5b49cea535240d9e1571f539196f3a38b3c278df1037a528fe0",
+            "rightsStatus": "citationOnly",
+            "contentIncluded": false,
+            "reviewState": "pendingReview",
+            "reviewNote": "Compliance policy behavior is documented; the complete expected device inventory is organization-owned evidence."
+        },
+        {
+            "id": "SRC-MDI-001",
+            "sourceOrganization": "Microsoft",
+            "classification": "microsoftGuidance",
+            "requestedUrl": "https://learn.microsoft.com/defender-for-identity/deploy/configure-sensor-settings",
+            "resolvedUrl": "https://learn.microsoft.com/en-us/defender-for-identity/deploy/configure-sensor-settings",
+            "httpStatus": 200,
+            "retrievalStatus": "retrieved",
+            "retrievedAtUtc": "2026-11-02T10:10:07.4288831Z",
+            "contentType": "text/html",
+            "etag": "\"CRbFFOu0RWFS4CSJ/WGbR52tzpA=\"",
+            "lastModifiedUtc": "2026-10-29T17:36:57Z",
+            "responseByteLength": 56367,
+            "responseSha256": "47a3a283b39fb80246d83ea5ef19b1e3ec742faf5bd3e67d55ebe4206f2a54ad",
+            "sourceRevision": "sha256:47a3a283b39fb80246d83ea5ef19b1e3ec742faf5bd3e67d55ebe4206f2a54ad",
+            "rightsStatus": "citationOnly",
+            "contentIncluded": false,
+            "reviewState": "pendingReview",
+            "reviewNote": "Sensor settings are documented; expected domain controller inventory and health evidence path remain customer/runtime dependent."
+        },
+        {
+            "id": "SRC-MDO-001",
+            "sourceOrganization": "Microsoft",
+            "classification": "microsoftGuidance",
+            "requestedUrl": "https://learn.microsoft.com/defender-office-365/safe-links-policies-configure",
+            "resolvedUrl": "https://learn.microsoft.com/en-us/defender-office-365/safe-links-policies-configure",
+            "httpStatus": 200,
+            "retrievalStatus": "retrieved",
+            "retrievedAtUtc": "2026-11-02T10:10:07.7427801Z",
+            "contentType": "text/html",
+            "etag": "\"BSQ6+bdTi4PNRXvJtjqG2Ma8EHA=\"",
+            "lastModifiedUtc": "2026-10-29T17:37:00Z",
+            "responseByteLength": 103503,
+            "responseSha256": "62cf72ecefac54c8423d46133647ca01765f544dce05de9fe4516a3290629523",
+            "sourceRevision": "sha256:62cf72ecefac54c8423d46133647ca01765f544dce05de9fe4516a3290629523",
+            "rightsStatus": "citationOnly",
+            "contentIncluded": false,
+            "reviewState": "pendingReview",
+            "reviewNote": "Safe Links policy settings are documented; click-through policy and effective recipient precedence require customer review."
+        },
+        {
+            "id": "SRC-MDE-001",
+            "sourceOrganization": "Microsoft",
+            "classification": "microsoftGuidance",
+            "requestedUrl": "https://learn.microsoft.com/en-us/defender-endpoint/prevent-changes-to-security-settings-with-tamper-protection",
+            "resolvedUrl": "https://learn.microsoft.com/en-us/defender-endpoint/tamper-protection-overview",
+            "httpStatus": 200,
+            "retrievalStatus": "retrieved",
+            "retrievedAtUtc": "2026-11-02T10:11:50.9121650Z",
+            "contentType": "text/html",
+            "etag": "\"lM664DSypMFrdzIvk4HWpV/kmAw=\"",
+            "lastModifiedUtc": "2026-10-29T17:36:51Z",
+            "responseByteLength": 70469,
+            "responseSha256": "23549a56a81173f89e5f7b78d47a51e811e06b94b1a7c750eff4d1580ebce6e3",
+            "sourceRevision": "sha256:23549a56a81173f89e5f7b78d47a51e811e06b94b1a7c750eff4d1580ebce6e3",
+            "rightsStatus": "citationOnly",
+            "contentIncluded": false,
+            "reviewState": "pendingReview",
+            "reviewNote": "Current tamper-protection overview retrieved; expected device coverage and readable effective-state path remain unqualified."
+        },
+        {
+            "id": "SRC-MDCA-001",
+            "sourceOrganization": "Microsoft",
+            "classification": "microsoftGuidance",
+            "requestedUrl": "https://learn.microsoft.com/en-us/defender-cloud-apps/proxy-intro-aad",
+            "resolvedUrl": "https://learn.microsoft.com/en-us/defender-cloud-apps/proxy-intro-aad",
+            "httpStatus": 200,
+            "retrievalStatus": "retrieved",
+            "retrievedAtUtc": "2026-11-02T10:13:09.9076520Z",
+            "contentType": "text/html",
+            "etag": "\"IOcN0QE5YapEYIgrWx/gLwGCDGs=\"",
+            "lastModifiedUtc": "2026-10-29T17:36:56Z",
+            "responseByteLength": 58359,
+            "responseSha256": "148dfc4ef22e3fedf8c7df51c0e2179a7c3cbdcb4b37ace97ade28afdd3e957c",
+            "sourceRevision": "sha256:148dfc4ef22e3fedf8c7df51c0e2179a7c3cbdcb4b37ace97ade28afdd3e957c",
+            "rightsStatus": "citationOnly",
+            "contentIncluded": false,
+            "reviewState": "pendingReview",
+            "reviewNote": "Current page documents Conditional Access app control, not the governance policy-to-app coverage rule; that expectation is unresolved."
+        },
+        {
+            "id": "SRC-XDR-001",
+            "sourceOrganization": "Microsoft",
+            "classification": "microsoftGuidance",
+            "requestedUrl": "https://learn.microsoft.com/defender-xdr/microsoft-365-defender",
+            "resolvedUrl": "https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender",
+            "httpStatus": 200,
+            "retrievalStatus": "retrieved",
+            "retrievedAtUtc": "2026-11-02T10:10:08.6625454Z",
+            "contentType": "text/html",
+            "etag": "\"IOw4TXeMusYV394+yPCS3qw4WOM=\"",
+            "lastModifiedUtc": "2026-10-29T17:37:02Z",
+            "responseByteLength": 56072,
+            "responseSha256": "3fbc0d30b1cc0c39ec877a3ccbb4f066f3b9128636c8f2dd4c31b39ea0725f62",
+            "sourceRevision": "sha256:3fbc0d30b1cc0c39ec877a3ccbb4f066f3b9128636c8f2dd4c31b39ea0725f62",
+            "rightsStatus": "citationOnly",
+            "contentIncluded": false,
+            "reviewState": "pendingReview",
+            "reviewNote": "Overview identifies the product; it does not qualify a direct integration API or organization-specific expected licensed-product set."
+        },
+        {
+            "id": "SRC-PUR-001",
+            "sourceOrganization": "Microsoft",
+            "classification": "microsoftGuidance",
+            "requestedUrl": "https://learn.microsoft.com/purview/audit-log-enable-disable",
+            "resolvedUrl": "https://learn.microsoft.com/en-us/purview/audit-log-enable-disable",
+            "httpStatus": 200,
+            "retrievalStatus": "retrieved",
+            "retrievedAtUtc": "2026-11-02T10:10:09.1897572Z",
+            "contentType": "text/html",
+            "etag": "\"81TDHQrxcl3aGeb62emRzzdH23M=\"",
+            "lastModifiedUtc": "2026-08-24T07:31:41Z",
+            "responseByteLength": 56331,
+            "responseSha256": "0f87146547da53877ce5e4428ad83771620fddf5d7440df42e7d002f1799d31c",
+            "sourceRevision": "sha256:0f87146547da53877ce5e4428ad83771620fddf5d7440df42e7d002f1799d31c",
+            "rightsStatus": "citationOnly",
+            "contentIncluded": false,
+            "reviewState": "pendingReview",
+            "reviewNote": "Audit enablement and prerequisites are documented; enablement and freshness remain scoped policy/evidence assertions pending review."
+        },
+        {
+            "id": "SRC-AZR-001",
+            "sourceOrganization": "Microsoft",
+            "classification": "microsoftGuidance",
+            "requestedUrl": "https://learn.microsoft.com/azure/storage/common/storage-require-secure-transfer",
+            "resolvedUrl": "https://learn.microsoft.com/en-us/azure/storage/common/storage-require-secure-transfer",
+            "httpStatus": 200,
+            "retrievalStatus": "retrieved",
+            "retrievedAtUtc": "2026-11-02T10:10:09.6133463Z",
+            "contentType": "text/html",
+            "etag": "\"5VcOhWO3Gdx1VI3vhBxLEdSbZKk=\"",
+            "lastModifiedUtc": "2026-10-26T11:48:28Z",
+            "responseByteLength": 55255,
+            "responseSha256": "f02ed635f5f1f77c81ee13e627ce02f0aa27fd480d3812167783e9883d64a1dc",
+            "sourceRevision": "sha256:f02ed635f5f1f77c81ee13e627ce02f0aa27fd480d3812167783e9883d64a1dc",
+            "rightsStatus": "citationOnly",
+            "contentIncluded": false,
+            "reviewState": "pendingReview",
+            "reviewNote": "Secure transfer behavior is documented; exact expected account inventory and ARM query scope remain organization-owned and unqualified."
+        }
+    ],
+    "controls": [
+        {
+            "id": "ENT-001",
+            "service": "Entra ID",
+            "specificationScenario": "ENT-001 privileged roles are covered",
+            "implementationTask": "8.1",
+            "fixtureFamily": "control_ENT-001_<case>",
+            "sourceId": "SRC-ENT-001",
+            "expectedStateClassification": "unresolved",
+            "reviewState": "pendingReview",
+            "rightsApproved": false,
+            "supportMode": "manual/unverified",
+            "operationQualified": false,
+            "requiresExpectedInventory": true,
+            "requiredInventories": [
+                "privilegedRoles"
+            ],
+            "requiredFields": [
+                "privileged_role_ids",
+                "covered_role_ids",
+                "excluded_principal_ids",
+                "emergency_registry_ids",
+                "unknown_scope_count"
+            ],
+            "rules": [
+                {
+                    "field": "privileged_role_ids",
+                    "operator": "equalsExpectedInventory",
+                    "relatedField": "privilegedRoles"
+                },
+                {
+                    "field": "covered_role_ids",
+                    "operator": "equalsField",
+                    "relatedField": "privileged_role_ids"
+                },
+                {
+                    "field": "excluded_principal_ids",
+                    "operator": "isSubsetOfField",
+                    "relatedField": "emergency_registry_ids"
+                },
+                {
+                    "field": "unknown_scope_count",
+                    "operator": "isZero"
+                }
+            ],
+            "permissionPrerequisites": [
+                "Unverified; confirm documented read permissions before activation."
+            ],
+            "licensePrerequisites": [
+                "Unverified; confirm applicable customer entitlements before activation."
+            ],
+            "runtimePrerequisites": [
+                "CISA repository release and exact control file revision not qualified."
+            ],
+            "expectedStateReviewNote": "The repository landing page is not a pinned control baseline. Privileged-role inventory and coverage semantics require source review and customer emergency registry approval.",
+            "maximumEvidenceAgeHours": null
+        },
+        {
+            "id": "EXO-001",
+            "service": "Exchange Online",
+            "specificationScenario": "EXO-001 external forwarding is disabled",
+            "implementationTask": "8.3",
+            "fixtureFamily": "control_EXO-001_<case>",
+            "sourceId": "SRC-EXO-001",
+            "expectedStateClassification": "customerPolicyCandidate",
+            "reviewState": "pendingReview",
+            "rightsApproved": false,
+            "supportMode": "manual/unverified",
+            "operationQualified": false,
+            "requiresExpectedInventory": false,
+            "requiredInventories": [],
+            "requiredFields": [
+                "external_auto_forwarding_allowed",
+                "scope_complete"
+            ],
+            "rules": [
+                {
+                    "field": "external_auto_forwarding_allowed",
+                    "operator": "isFalse"
+                },
+                {
+                    "field": "scope_complete",
+                    "operator": "isTrue"
+                }
+            ],
+            "permissionPrerequisites": [
+                "Unverified; confirm documented read permissions before activation."
+            ],
+            "licensePrerequisites": [
+                "Unverified; confirm applicable customer entitlements before activation."
+            ],
+            "runtimePrerequisites": [
+                "No Exchange API or PowerShell operation has been qualified."
+            ],
+            "expectedStateReviewNote": "Microsoft documents controls for external forwarding; false is retained as a customer policy candidate, not a source-mandated universal value.",
+            "maximumEvidenceAgeHours": null
+        },
+        {
+            "id": "TEAM-001",
+            "service": "Teams",
+            "specificationScenario": "TEAM-001 anonymous meeting join is disabled",
+            "implementationTask": "8.4",
+            "fixtureFamily": "control_TEAM-001_<case>",
+            "sourceId": "SRC-TEAM-001",
+            "expectedStateClassification": "customerPolicyCandidate",
+            "reviewState": "pendingReview",
+            "rightsApproved": false,
+            "supportMode": "manual/unverified",
+            "operationQualified": false,
+            "requiresExpectedInventory": false,
+            "requiredInventories": [],
+            "requiredFields": [
+                "anonymous_meeting_join_allowed",
+                "policy_assignment_complete"
+            ],
+            "rules": [
+                {
+                    "field": "anonymous_meeting_join_allowed",
+                    "operator": "isFalse"
+                },
+                {
+                    "field": "policy_assignment_complete",
+                    "operator": "isTrue"
+                }
+            ],
+            "permissionPrerequisites": [
+                "Unverified; confirm documented read permissions before activation."
+            ],
+            "licensePrerequisites": [
+                "Unverified; confirm applicable customer entitlements before activation."
+            ],
+            "runtimePrerequisites": [
+                "No Teams API or PowerShell operation has been qualified."
+            ],
+            "expectedStateReviewNote": "Meeting policy settings and assignment are documented; anonymous join disabled is a customer policy candidate pending effective-scope review.",
+            "maximumEvidenceAgeHours": null
+        },
+        {
+            "id": "SPO-001",
+            "service": "SharePoint and OneDrive",
+            "specificationScenario": "SPO-001 default links use organization view access",
+            "implementationTask": "8.6",
+            "fixtureFamily": "control_SPO-001_<case>",
+            "sourceId": "SRC-SPO-001",
+            "expectedStateClassification": "customerPolicyCandidate",
+            "reviewState": "pendingReview",
+            "rightsApproved": false,
+            "supportMode": "manual/unverified",
+            "operationQualified": false,
+            "requiresExpectedInventory": false,
+            "requiredInventories": [],
+            "requiredFields": [
+                "default_link_audience",
+                "default_link_permission",
+                "scope_complete"
+            ],
+            "rules": [
+                {
+                    "field": "default_link_audience",
+                    "operator": "equalsLiteral",
+                    "literal": {
+                        "kind": "string",
+                        "value": "organization"
+                    }
+                },
+                {
+                    "field": "default_link_permission",
+                    "operator": "equalsLiteral",
+                    "literal": {
+                        "kind": "string",
+                        "value": "view"
+                    }
+                },
+                {
+                    "field": "scope_complete",
+                    "operator": "isTrue"
+                }
+            ],
+            "permissionPrerequisites": [
+                "Unverified; confirm documented read permissions before activation."
+            ],
+            "licensePrerequisites": [
+                "Unverified; confirm applicable customer entitlements before activation."
+            ],
+            "runtimePrerequisites": [
+                "Tenant and site-level read paths are unverified."
+            ],
+            "expectedStateReviewNote": "Microsoft describes available link types and cautions against Anyone as the default; organization/view is a customer policy choice. Tenant defaults do not prove site-level coverage.",
+            "maximumEvidenceAgeHours": null
+        },
+        {
+            "id": "PP-001",
+            "service": "Power Platform and Power Automate",
+            "specificationScenario": "PP-001 DLP covers expected environments",
+            "implementationTask": "9.1",
+            "fixtureFamily": "control_PP-001_<case>",
+            "sourceId": "SRC-PP-001",
+            "expectedStateClassification": "customerPolicyCandidate",
+            "reviewState": "pendingReview",
+            "rightsApproved": false,
+            "supportMode": "manual/unverified",
+            "operationQualified": false,
+            "requiresExpectedInventory": true,
+            "requiredInventories": [
+                "environments",
+                "blockedProhibitedPairs"
+            ],
+            "requiredFields": [
+                "expected_environment_ids",
+                "covered_environment_ids",
+                "dlp_enabled",
+                "prohibited_connector_pair_tests"
+            ],
+            "rules": [
+                {
+                    "field": "expected_environment_ids",
+                    "operator": "equalsExpectedInventory",
+                    "relatedField": "environments"
+                },
+                {
+                    "field": "covered_environment_ids",
+                    "operator": "equalsExpectedInventory",
+                    "relatedField": "environments"
+                },
+                {
+                    "field": "dlp_enabled",
+                    "operator": "isTrue"
+                },
+                {
+                    "field": "prohibited_connector_pair_tests",
+                    "operator": "equalsExpectedInventory",
+                    "relatedField": "blockedProhibitedPairs"
+                }
+            ],
+            "permissionPrerequisites": [
+                "Unverified; confirm documented read permissions before activation."
+            ],
+            "licensePrerequisites": [
+                "Unverified; confirm applicable customer entitlements before activation."
+            ],
+            "runtimePrerequisites": [
+                "No environment/DLP collector has been qualified."
+            ],
+            "expectedStateReviewNote": "Environment scope and prohibited connector pairs are customer-defined; observed tests must explicitly identify blocked pairs.",
+            "maximumEvidenceAgeHours": null
+        },
+        {
+            "id": "INT-001",
+            "service": "Intune",
+            "specificationScenario": "INT-001 expected devices are compliant",
+            "implementationTask": "9.3",
+            "fixtureFamily": "control_INT-001_<case>",
+            "sourceId": "SRC-INT-001",
+            "expectedStateClassification": "customerPolicyCandidate",
+            "reviewState": "pendingReview",
+            "rightsApproved": false,
+            "supportMode": "manual/unverified",
+            "operationQualified": false,
+            "requiresExpectedInventory": true,
+            "requiredInventories": [
+                "devices"
+            ],
+            "requiredFields": [
+                "expected_device_ids",
+                "compliant_device_ids",
+                "pending_device_ids",
+                "failed_device_ids",
+                "unassigned_device_ids"
+            ],
+            "rules": [
+                {
+                    "field": "expected_device_ids",
+                    "operator": "equalsExpectedInventory",
+                    "relatedField": "devices"
+                },
+                {
+                    "field": "compliant_device_ids",
+                    "operator": "equalsExpectedInventory",
+                    "relatedField": "devices"
+                },
+                {
+                    "field": "pending_device_ids",
+                    "operator": "isEmpty"
+                },
+                {
+                    "field": "failed_device_ids",
+                    "operator": "isEmpty"
+                },
+                {
+                    "field": "unassigned_device_ids",
+                    "operator": "isEmpty"
+                }
+            ],
+            "permissionPrerequisites": [
+                "Unverified; confirm documented read permissions before activation."
+            ],
+            "licensePrerequisites": [
+                "Unverified; confirm applicable customer entitlements before activation."
+            ],
+            "runtimePrerequisites": [
+                "No Intune effective deployment collector has been qualified."
+            ],
+            "expectedStateReviewNote": "The expected device inventory must be independently approved and sourced; policy existence or creation is not deployment coverage.",
+            "maximumEvidenceAgeHours": null
+        },
+        {
+            "id": "MDI-001",
+            "service": "Defender for Identity",
+            "specificationScenario": "MDI-001 expected domain controllers have healthy sensors",
+            "implementationTask": "10.1",
+            "fixtureFamily": "control_MDI-001_<case>",
+            "sourceId": "SRC-MDI-001",
+            "expectedStateClassification": "customerPolicyCandidate",
+            "reviewState": "pendingReview",
+            "rightsApproved": false,
+            "supportMode": "manual/unverified",
+            "operationQualified": false,
+            "requiresExpectedInventory": true,
+            "requiredInventories": [
+                "domainControllers"
+            ],
+            "requiredFields": [
+                "expected_domain_controller_ids",
+                "healthy_sensor_ids",
+                "unknown_sensor_ids"
+            ],
+            "rules": [
+                {
+                    "field": "expected_domain_controller_ids",
+                    "operator": "equalsExpectedInventory",
+                    "relatedField": "domainControllers"
+                },
+                {
+                    "field": "healthy_sensor_ids",
+                    "operator": "equalsExpectedInventory",
+                    "relatedField": "domainControllers"
+                },
+                {
+                    "field": "unknown_sensor_ids",
+                    "operator": "isEmpty"
+                }
+            ],
+            "permissionPrerequisites": [
+                "Unverified; confirm documented read permissions before activation."
+            ],
+            "licensePrerequisites": [
+                "Unverified; confirm applicable customer entitlements before activation."
+            ],
+            "runtimePrerequisites": [
+                "On-premises sensor coverage and runtime are not qualified."
+            ],
+            "expectedStateReviewNote": "The customer owns the expected domain controller inventory; inaccessible sensor evidence remains unknown/manual.",
+            "maximumEvidenceAgeHours": null
+        },
+        {
+            "id": "MDO-001",
+            "service": "Defender for Office 365",
+            "specificationScenario": "MDO-001 Safe Links covers expected recipients",
+            "implementationTask": "10.2",
+            "fixtureFamily": "control_MDO-001_<case>",
+            "sourceId": "SRC-MDO-001",
+            "expectedStateClassification": "customerPolicyCandidate",
+            "reviewState": "pendingReview",
+            "rightsApproved": false,
+            "supportMode": "manual/unverified",
+            "operationQualified": false,
+            "requiresExpectedInventory": true,
+            "requiredInventories": [
+                "recipients"
+            ],
+            "requiredFields": [
+                "safe_links_enabled",
+                "allow_click_through",
+                "expected_recipient_ids",
+                "covered_recipient_ids"
+            ],
+            "rules": [
+                {
+                    "field": "safe_links_enabled",
+                    "operator": "isTrue"
+                },
+                {
+                    "field": "allow_click_through",
+                    "operator": "isFalse"
+                },
+                {
+                    "field": "expected_recipient_ids",
+                    "operator": "equalsExpectedInventory",
+                    "relatedField": "recipients"
+                },
+                {
+                    "field": "covered_recipient_ids",
+                    "operator": "equalsExpectedInventory",
+                    "relatedField": "recipients"
+                }
+            ],
+            "permissionPrerequisites": [
+                "Unverified; confirm documented read permissions before activation."
+            ],
+            "licensePrerequisites": [
+                "Unverified; confirm applicable Defender for Office 365 entitlement and policy precedence."
+            ],
+            "runtimePrerequisites": [
+                "No Safe Links scope collector has been qualified."
+            ],
+            "expectedStateReviewNote": "Safe Links controls are documented; click-through, licensing, priority, exclusions, and expected recipients need customer-specific approval.",
+            "maximumEvidenceAgeHours": null
+        },
+        {
+            "id": "MDE-001",
+            "service": "Defender for Endpoint",
+            "specificationScenario": "MDE-001 expected devices have tamper protection",
+            "implementationTask": "10.3",
+            "fixtureFamily": "control_MDE-001_<case>",
+            "sourceId": "SRC-MDE-001",
+            "expectedStateClassification": "customerPolicyCandidate",
+            "reviewState": "pendingReview",
+            "rightsApproved": false,
+            "supportMode": "manual/unverified",
+            "operationQualified": false,
+            "requiresExpectedInventory": true,
+            "requiredInventories": [
+                "devices"
+            ],
+            "requiredFields": [
+                "expected_device_ids",
+                "tamper_protected_device_ids",
+                "unknown_device_ids"
+            ],
+            "rules": [
+                {
+                    "field": "expected_device_ids",
+                    "operator": "equalsExpectedInventory",
+                    "relatedField": "devices"
+                },
+                {
+                    "field": "tamper_protected_device_ids",
+                    "operator": "equalsExpectedInventory",
+                    "relatedField": "devices"
+                },
+                {
+                    "field": "unknown_device_ids",
+                    "operator": "isEmpty"
+                }
+            ],
+            "permissionPrerequisites": [
+                "Unverified; confirm documented read permissions before activation."
+            ],
+            "licensePrerequisites": [
+                "Unverified; confirm applicable customer entitlements before activation."
+            ],
+            "runtimePrerequisites": [
+                "No Defender for Endpoint effective-state collector has been qualified."
+            ],
+            "expectedStateReviewNote": "Tamper protection guidance is pinned; exact device inventory, management authority, co-management, and readable state are unresolved.",
+            "maximumEvidenceAgeHours": null
+        },
+        {
+            "id": "MDCA-001",
+            "service": "Defender for Cloud Apps",
+            "specificationScenario": "MDCA-001 governance policies cover expected apps",
+            "implementationTask": "10.4",
+            "fixtureFamily": "control_MDCA-001_<case>",
+            "sourceId": "SRC-MDCA-001",
+            "expectedStateClassification": "unresolved",
+            "reviewState": "pendingReview",
+            "rightsApproved": false,
+            "supportMode": "manual/unverified",
+            "operationQualified": false,
+            "requiresExpectedInventory": true,
+            "requiredInventories": [
+                "apps"
+            ],
+            "requiredFields": [
+                "expected_app_ids",
+                "covered_app_ids",
+                "enabled_governance_policy_ids"
+            ],
+            "rules": [
+                {
+                    "field": "expected_app_ids",
+                    "operator": "equalsExpectedInventory",
+                    "relatedField": "apps"
+                },
+                {
+                    "field": "covered_app_ids",
+                    "operator": "equalsExpectedInventory",
+                    "relatedField": "apps"
+                },
+                {
+                    "field": "enabled_governance_policy_ids",
+                    "operator": "isNonEmpty"
+                }
+            ],
+            "permissionPrerequisites": [
+                "Unverified; confirm documented read permissions before activation."
+            ],
+            "licensePrerequisites": [
+                "Unverified; confirm applicable customer entitlements before activation."
+            ],
+            "runtimePrerequisites": [
+                "Current retrieved page concerns Conditional Access app control, not governance policy coverage."
+            ],
+            "expectedStateReviewNote": "The cited governance policy source returns 404; the replacement page does not justify this expected state. Keep unsupported/manual until a relevant source and evidence model are reviewed.",
+            "maximumEvidenceAgeHours": null
+        },
+        {
+            "id": "XDR-001",
+            "service": "Defender XDR",
+            "specificationScenario": "XDR-001 expected licensed products are integrated",
+            "implementationTask": "10.5",
+            "fixtureFamily": "control_XDR-001_<case>",
+            "sourceId": "SRC-XDR-001",
+            "expectedStateClassification": "unresolved",
+            "reviewState": "pendingReview",
+            "rightsApproved": false,
+            "supportMode": "manual/unverified",
+            "operationQualified": false,
+            "requiresExpectedInventory": true,
+            "requiredInventories": [
+                "licensedProducts"
+            ],
+            "requiredFields": [
+                "expected_product_ids",
+                "integrated_product_ids",
+                "unknown_product_ids"
+            ],
+            "rules": [
+                {
+                    "field": "expected_product_ids",
+                    "operator": "equalsExpectedInventory",
+                    "relatedField": "licensedProducts"
+                },
+                {
+                    "field": "integrated_product_ids",
+                    "operator": "equalsExpectedInventory",
+                    "relatedField": "licensedProducts"
+                },
+                {
+                    "field": "unknown_product_ids",
+                    "operator": "isEmpty"
+                }
+            ],
+            "permissionPrerequisites": [
+                "Unverified; confirm documented read permissions before activation."
+            ],
+            "licensePrerequisites": [
+                "Expected product inventory and entitlements require customer verification."
+            ],
+            "runtimePrerequisites": [
+                "No XDR configuration operation has been qualified."
+            ],
+            "expectedStateReviewNote": "Product overview does not define a universal integration requirement or API evidence; incidents are not configuration evidence.",
+            "maximumEvidenceAgeHours": null
+        },
+        {
+            "id": "PUR-001",
+            "service": "Purview",
+            "specificationScenario": "PUR-001 unified audit logging is enabled",
+            "implementationTask": "9.5",
+            "fixtureFamily": "control_PUR-001_<case>",
+            "sourceId": "SRC-PUR-001",
+            "expectedStateClassification": "customerPolicyCandidate",
+            "reviewState": "pendingReview",
+            "rightsApproved": false,
+            "supportMode": "manual/unverified",
+            "operationQualified": false,
+            "requiresExpectedInventory": false,
+            "requiredInventories": [],
+            "requiredFields": [
+                "unified_audit_log_enabled",
+                "evidence_fresh"
+            ],
+            "rules": [
+                {
+                    "field": "unified_audit_log_enabled",
+                    "operator": "isTrue"
+                },
+                {
+                    "field": "evidence_fresh",
+                    "operator": "isTrue"
+                }
+            ],
+            "permissionPrerequisites": [
+                "Unverified; confirm documented read permissions before activation."
+            ],
+            "licensePrerequisites": [
+                "Unverified; confirm applicable Purview/Microsoft 365 entitlement."
+            ],
+            "runtimePrerequisites": [
+                "No audit configuration collector has been qualified."
+            ],
+            "expectedStateReviewNote": "Audit guidance is pinned; enabling and freshness are customer policy/evidence expectations, not proof of regulatory certification.",
+            "maximumEvidenceAgeHours": null
+        },
+        {
+            "id": "AZR-001",
+            "service": "Azure",
+            "specificationScenario": "AZR-001 expected storage accounts require secure transfer",
+            "implementationTask": "11.1",
+            "fixtureFamily": "control_AZR-001_<case>",
+            "sourceId": "SRC-AZR-001",
+            "expectedStateClassification": "customerPolicyCandidate",
+            "reviewState": "pendingReview",
+            "rightsApproved": false,
+            "supportMode": "manual/unverified",
+            "operationQualified": false,
+            "requiresExpectedInventory": true,
+            "requiredInventories": [
+                "storageAccounts"
+            ],
+            "requiredFields": [
+                "expected_storage_account_ids",
+                "secure_transfer_required_ids",
+                "unknown_account_ids"
+            ],
+            "rules": [
+                {
+                    "field": "expected_storage_account_ids",
+                    "operator": "equalsExpectedInventory",
+                    "relatedField": "storageAccounts"
+                },
+                {
+                    "field": "secure_transfer_required_ids",
+                    "operator": "equalsExpectedInventory",
+                    "relatedField": "storageAccounts"
+                },
+                {
+                    "field": "unknown_account_ids",
+                    "operator": "isEmpty"
+                }
+            ],
+            "permissionPrerequisites": [
+                "Unverified; confirm documented ARM read permissions and delegated scope."
+            ],
+            "licensePrerequisites": [
+                "Unverified; confirm applicable Azure subscription features."
+            ],
+            "runtimePrerequisites": [
+                "No ARM operation or subscription/resource-group scope has been qualified."
+            ],
+            "expectedStateReviewNote": "Secure transfer guidance is pinned; customer inventory and complete ARM scope are required, and no API operation is claimed.",
+            "maximumEvidenceAgeHours": null
+        }
+    ]
 }

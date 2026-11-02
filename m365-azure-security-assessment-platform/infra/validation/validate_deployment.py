@@ -16,9 +16,11 @@ from typing import Any
 IMAGE_DIGEST = re.compile(r"^.+@sha256:[0-9a-f]{64}$")
 SHA256 = re.compile(r"^sha256:[0-9a-f]{64}$")
 MANIFEST_DIGEST = re.compile(r"^sha256:[0-9a-f]{64}$")
-TENANT_ID = re.compile(r"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$")
+TENANT_ID = re.compile(
+    r"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$")
 COMMIT = re.compile(r"^[0-9a-f]{40}$")
-FQDN = re.compile(r"^(?=.{1,253}$)(?:[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)(?:\.(?:[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?))+$")
+FQDN = re.compile(
+    r"^(?=.{1,253}$)(?:[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)(?:\.(?:[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?))+$")
 SENSITIVE_KEYS = {
     "password",
     "token",
@@ -64,7 +66,8 @@ def _contains_sensitive_value(value: Any, path: str = "manifest") -> list[str]:
         for key, child in value.items():
             normalized_key = key.lower().replace("_", "")
             if normalized_key in SENSITIVE_KEYS or normalized_key.endswith(("password", "clientsecret", "secretvalue", "credentialvalue")):
-                errors.append(f"{path}.{key} must not contain credential material")
+                errors.append(
+                    f"{path}.{key} must not contain credential material")
             errors.extend(_contains_sensitive_value(child, f"{path}.{key}"))
     elif isinstance(value, list):
         for index, child in enumerate(value):
@@ -74,7 +77,8 @@ def _contains_sensitive_value(value: Any, path: str = "manifest") -> list[str]:
 
 def _validate_approval(name: str, approval: Any, errors: list[str]) -> None:
     if not isinstance(approval, dict) or approval.get("approved") is not True:
-        errors.append(f"production approval '{name}' must be an explicit approved record")
+        errors.append(
+            f"production approval '{name}' must be an explicit approved record")
         return
     for field in ("reference", "approvedBy"):
         if not _is_nonempty_string(approval.get(field)):
@@ -87,9 +91,11 @@ def _validate_approval(name: str, approval: Any, errors: list[str]) -> None:
             parsed = datetime.fromisoformat(timestamp.replace("Z", "+00:00"))
             offset = parsed.utcoffset()
             if offset is None or offset.total_seconds() != 0:
-                errors.append(f"production approval '{name}' approvedAtUtc must be UTC")
+                errors.append(
+                    f"production approval '{name}' approvedAtUtc must be UTC")
         except ValueError:
-            errors.append(f"production approval '{name}' approvedAtUtc must be an ISO-8601 timestamp")
+            errors.append(
+                f"production approval '{name}' approvedAtUtc must be an ISO-8601 timestamp")
 
 
 def _validate_network_approval(approval: Any, errors: list[str], stage: str) -> None:
@@ -102,22 +108,27 @@ def _validate_network_approval(approval: Any, errors: list[str], stage: str) -> 
     if isinstance(firewall_ip, str) and firewall_ip.strip():
         try:
             if not ipaddress.ip_address(firewall_ip).is_private:
-                errors.append(f"{stage} firewallPrivateIp must be a private address")
+                errors.append(
+                    f"{stage} firewallPrivateIp must be a private address")
         except ValueError:
-            errors.append(f"{stage} firewallPrivateIp must be a valid IP address")
+            errors.append(
+                f"{stage} firewallPrivateIp must be a valid IP address")
     destinations = approval.get("approvedMicrosoftApiFqdns")
     if not isinstance(destinations, list) or not destinations:
-        errors.append(f"{stage} network approval requires an explicit approvedMicrosoftApiFqdns list")
+        errors.append(
+            f"{stage} network approval requires an explicit approvedMicrosoftApiFqdns list")
     else:
         for destination in destinations:
             if not isinstance(destination, str) or not FQDN.fullmatch(destination) or "*" in destination:
-                errors.append(f"{stage} egress destinations must be exact hostnames without wildcards or URL schemes")
+                errors.append(
+                    f"{stage} egress destinations must be exact hostnames without wildcards or URL schemes")
 
 
 def _validate_network_plan(plan: Any, errors: list[str], required: bool) -> None:
     if not isinstance(plan, dict):
         if required:
-            errors.append("networkPlan with a VNet and dedicated workload/data/private-endpoint subnets is required")
+            errors.append(
+                "networkPlan with a VNet and dedicated workload/data/private-endpoint subnets is required")
         return
     try:
         vnet = ipaddress.ip_network(plan.get("vnetCidr", ""), strict=True)
@@ -130,7 +141,8 @@ def _validate_network_plan(plan: Any, errors: list[str], required: bool) -> None
         try:
             subnet = ipaddress.ip_network(plan.get(name, ""), strict=True)
         except (TypeError, ValueError):
-            errors.append(f"networkPlan.{name} must be a canonical subnet CIDR")
+            errors.append(
+                f"networkPlan.{name} must be a canonical subnet CIDR")
             continue
         if isinstance(subnet, ipaddress.IPv4Network) and isinstance(vnet, ipaddress.IPv4Network):
             contained = subnet.subnet_of(vnet)
@@ -139,13 +151,15 @@ def _validate_network_plan(plan: Any, errors: list[str], required: bool) -> None
         else:
             contained = False
         if not contained:
-            errors.append(f"networkPlan.{name} must be contained in networkPlan.vnetCidr")
+            errors.append(
+                f"networkPlan.{name} must be contained in networkPlan.vnetCidr")
         subnets.append((name, subnet))
 
     for index, (first_name, first_subnet) in enumerate(subnets):
         for second_name, second_subnet in subnets[index + 1:]:
             if first_subnet.version == second_subnet.version and first_subnet.overlaps(second_subnet):
-                errors.append(f"networkPlan.{first_name} overlaps networkPlan.{second_name}")
+                errors.append(
+                    f"networkPlan.{first_name} overlaps networkPlan.{second_name}")
 
 
 def validate_manifest(manifest: Any) -> list[str]:
@@ -155,15 +169,18 @@ def validate_manifest(manifest: Any) -> list[str]:
 
     errors.extend(_contains_sensitive_value(manifest))
     if manifest.get("environmentClass") not in {"development-test", "pre-production", "production"}:
-        errors.append("environmentClass must be development-test, pre-production, or production")
+        errors.append(
+            "environmentClass must be development-test, pre-production, or production")
     if manifest.get("deploymentMode") not in {"central", "standalone"}:
         errors.append("deploymentMode must be central or standalone")
     elif manifest.get("deploymentMode") == "standalone" and not TENANT_ID.fullmatch(str(manifest.get("standaloneTenantId", ""))):
-        errors.append("standalone deployment requires exactly one valid standaloneTenantId")
+        errors.append(
+            "standalone deployment requires exactly one valid standaloneTenantId")
 
     location = manifest.get("location")
     if not _is_nonempty_string(location):
-        errors.append("location is required and must be an explicitly selected Azure region")
+        errors.append(
+            "location is required and must be an explicitly selected Azure region")
     _validate_network_plan(
         manifest.get("networkPlan"),
         errors,
@@ -172,7 +189,8 @@ def validate_manifest(manifest: Any) -> list[str]:
 
     worker_bindings = manifest.get("customerWorkerBindings")
     if not isinstance(worker_bindings, list):
-        errors.append("customerWorkerBindings must be an explicit per-customer list; use an empty list to provision no workers")
+        errors.append(
+            "customerWorkerBindings must be an explicit per-customer list; use an empty list to provision no workers")
         worker_bindings = []
     purpose_tenants = {"assessment": set(), "remediation": set()}
     purpose_digests = {"assessment": set(), "remediation": set()}
@@ -183,22 +201,27 @@ def validate_manifest(manifest: Any) -> list[str]:
             continue
         tenant_id = binding.get("tenantId")
         if not isinstance(tenant_id, str) or not TENANT_ID.fullmatch(tenant_id):
-            errors.append(f"customerWorkerBindings[{index}].tenantId must be a valid tenant UUID")
+            errors.append(
+                f"customerWorkerBindings[{index}].tenantId must be a valid tenant UUID")
             continue
         tenant_id = tenant_id.lower()
         if tenant_id in bound_tenants:
-            errors.append("customerWorkerBindings must contain exactly one entry per tenant")
+            errors.append(
+                "customerWorkerBindings must contain exactly one entry per tenant")
         bound_tenants.add(tenant_id)
         if manifest.get("deploymentMode") == "standalone" and tenant_id != str(manifest.get("standaloneTenantId", "")).lower():
-            errors.append("standalone worker bindings must match the configured standaloneTenantId")
+            errors.append(
+                "standalone worker bindings must match the configured standaloneTenantId")
         for purpose in ("assessment", "remediation"):
             digest = binding.get(f"{purpose}ManifestDigest", "")
             if not isinstance(digest, str):
-                errors.append(f"customerWorkerBindings[{index}].{purpose}ManifestDigest must be a string")
+                errors.append(
+                    f"customerWorkerBindings[{index}].{purpose}ManifestDigest must be a string")
                 continue
             if digest:
                 if not MANIFEST_DIGEST.fullmatch(digest):
-                    errors.append(f"customerWorkerBindings[{index}].{purpose}ManifestDigest must be an immutable SHA-256 digest")
+                    errors.append(
+                        f"customerWorkerBindings[{index}].{purpose}ManifestDigest must be an immutable SHA-256 digest")
                     continue
                 _validate_approval(
                     f"{purpose} adapter manifest for tenant {tenant_id}",
@@ -208,21 +231,25 @@ def validate_manifest(manifest: Any) -> list[str]:
                 purpose_tenants[purpose].add(tenant_id)
                 purpose_digests[purpose].add(digest)
             elif binding.get(f"{purpose}ManifestApproval"):
-                errors.append(f"customerWorkerBindings[{index}] cannot include a {purpose} manifest approval without a digest")
+                errors.append(
+                    f"customerWorkerBindings[{index}] cannot include a {purpose} manifest approval without a digest")
 
     windows_digests = manifest.get("windowsWorkerManifestDigests", [])
     if not isinstance(windows_digests, list):
         errors.append("windowsWorkerManifestDigests must be a list")
     elif windows_digests:
-        errors.append("Windows worker manifests are blocked: this candidate has no separately approved isolated Windows VM host")
+        errors.append(
+            "Windows worker manifests are blocked: this candidate has no separately approved isolated Windows VM host")
 
     images = manifest.get("images")
     if not isinstance(images, dict):
-        errors.append("images must contain immutable references for web, api, assessment, and remediation")
+        errors.append(
+            "images must contain immutable references for web, api, assessment, and remediation")
     else:
         for name in ("web", "api", "assessment", "remediation"):
             if not isinstance(images.get(name), str) or not IMAGE_DIGEST.fullmatch(images[name]):
-                errors.append(f"images.{name} must use an immutable @sha256 image digest")
+                errors.append(
+                    f"images.{name} must use an immutable @sha256 image digest")
 
     service_bus_sku = manifest.get("serviceBusSku")
     if service_bus_sku not in {"Standard", "Premium"}:
@@ -230,7 +257,8 @@ def validate_manifest(manifest: Any) -> list[str]:
 
     private_access = manifest.get("privateAccess")
     if not isinstance(private_access, dict):
-        errors.append("privateAccess must describe private service access and ingress boundaries")
+        errors.append(
+            "privateAccess must describe private service access and ingress boundaries")
     else:
         for service in ("postgres", "blob", "keyVault", "serviceBus"):
             if private_access.get(service) is not True:
@@ -242,17 +270,20 @@ def validate_manifest(manifest: Any) -> list[str]:
 
     postgres = manifest.get("postgresAppRole")
     if not isinstance(postgres, dict) or postgres.get("name") != "platform_app":
-        errors.append("postgresAppRole must identify the scoped platform_app role")
+        errors.append(
+            "postgresAppRole must identify the scoped platform_app role")
     else:
         for flag in ("superuser", "createDatabase", "createRole", "bypassRls"):
             if postgres.get(flag) is not False:
                 errors.append(f"postgresAppRole.{flag} must be false")
         if postgres.get("rowLevelSecurity") is not True or postgres.get("forceRowLevelSecurity") is not True:
-            errors.append("postgresAppRole must require enabled and forced row-level security")
+            errors.append(
+                "postgresAppRole must require enabled and forced row-level security")
 
     identities = manifest.get("identities")
     if not isinstance(identities, dict):
-        errors.append("identities must define scoped web, api, assessment, and remediation identities")
+        errors.append(
+            "identities must define scoped web, api, assessment, and remediation identities")
         identities = {}
     for identity, allowed_roles in IDENTITY_ROLES.items():
         entry = identities.get(identity)
@@ -265,40 +296,54 @@ def validate_manifest(manifest: Any) -> list[str]:
         else:
             role_set = set(roles)
             if len(role_set) != len(roles):
-                errors.append(f"identities.{identity}.roles must not contain duplicates")
+                errors.append(
+                    f"identities.{identity}.roles must not contain duplicates")
             if role_set - allowed_roles:
-                errors.append(f"identities.{identity}.roles contains an unapproved or overbroad grant")
+                errors.append(
+                    f"identities.{identity}.roles contains an unapproved or overbroad grant")
         tenant_ids = entry.get("credentialTenantIds", [])
         if not isinstance(tenant_ids, list) or any(not isinstance(tenant_id, str) for tenant_id in tenant_ids):
-            errors.append(f"identities.{identity}.credentialTenantIds must be a list of tenant IDs")
+            errors.append(
+                f"identities.{identity}.credentialTenantIds must be a list of tenant IDs")
             continue
         if len(set(tenant_ids)) != len(tenant_ids):
-            errors.append(f"identities.{identity}.credentialTenantIds must not contain duplicates")
+            errors.append(
+                f"identities.{identity}.credentialTenantIds must not contain duplicates")
         for tenant_id in tenant_ids:
             if not TENANT_ID.fullmatch(tenant_id):
-                errors.append(f"identities.{identity} contains an invalid credential tenant scope")
-        expected_purpose = identity if identity in {"assessment", "remediation"} else None
+                errors.append(
+                    f"identities.{identity} contains an invalid credential tenant scope")
+        expected_purpose = identity if identity in {
+            "assessment", "remediation"} else None
         if entry.get("credentialPurpose") != expected_purpose:
-            errors.append(f"identities.{identity}.credentialPurpose must be {expected_purpose or 'unset'}")
+            errors.append(
+                f"identities.{identity}.credentialPurpose must be {expected_purpose or 'unset'}")
         manifest_digests = entry.get("verifiedManifestDigests", [])
         if not isinstance(manifest_digests, list) or any(not isinstance(digest, str) or not MANIFEST_DIGEST.fullmatch(digest) for digest in manifest_digests):
-            errors.append(f"identities.{identity}.verifiedManifestDigests must contain only immutable SHA-256 digests")
+            errors.append(
+                f"identities.{identity}.verifiedManifestDigests must contain only immutable SHA-256 digests")
         else:
             if len(set(manifest_digests)) != len(manifest_digests):
-                errors.append(f"identities.{identity}.verifiedManifestDigests must not contain duplicates")
+                errors.append(
+                    f"identities.{identity}.verifiedManifestDigests must not contain duplicates")
             if identity in {"assessment", "remediation"} and set(manifest_digests) != purpose_digests[identity]:
-                errors.append(f"identities.{identity}.verifiedManifestDigests must exactly match approved customer bindings")
+                errors.append(
+                    f"identities.{identity}.verifiedManifestDigests must exactly match approved customer bindings")
             if identity in {"web", "api"} and manifest_digests:
-                errors.append(f"identities.{identity} must not receive worker manifest bindings")
+                errors.append(
+                    f"identities.{identity} must not receive worker manifest bindings")
         if identity in {"assessment", "remediation"}:
             expected_tenants = purpose_tenants[identity]
             if {tenant_id.lower() for tenant_id in tenant_ids if isinstance(tenant_id, str)} != expected_tenants:
-                errors.append(f"identities.{identity}.credentialTenantIds must exactly match that purpose's approved customer bindings")
+                errors.append(
+                    f"identities.{identity}.credentialTenantIds must exactly match that purpose's approved customer bindings")
             expected_roles = allowed_roles if expected_tenants else set()
             if isinstance(roles, list) and set(roles) != expected_roles:
-                errors.append(f"identities.{identity}.roles must be absent until a matching verified manifest exists")
+                errors.append(
+                    f"identities.{identity}.roles must be absent until a matching verified manifest exists")
         if identity in {"web", "api"} and tenant_ids:
-            errors.append(f"identities.{identity} must not receive customer connector credentials")
+            errors.append(
+                f"identities.{identity} must not receive customer connector credentials")
 
     approvals = manifest.get("approvals", {})
     if not isinstance(approvals, dict):
@@ -306,8 +351,10 @@ def validate_manifest(manifest: Any) -> list[str]:
         approvals = {}
 
     if manifest.get("environmentClass") == "pre-production":
-        _validate_approval("networkProfile", approvals.get("networkProfile"), errors)
-        _validate_network_approval(approvals.get("networkProfile"), errors, "pre-production")
+        _validate_approval("networkProfile", approvals.get(
+            "networkProfile"), errors)
+        _validate_network_approval(approvals.get(
+            "networkProfile"), errors, "pre-production")
 
     if manifest.get("environmentClass") == "production":
         if service_bus_sku != "Premium":
@@ -323,17 +370,22 @@ def validate_manifest(manifest: Any) -> list[str]:
         capacity = approvals.get("premiumCapacityCost", {})
         if isinstance(capacity, dict):
             if capacity.get("sku") != "Premium" or not isinstance(capacity.get("messagingUnits"), int) or capacity.get("messagingUnits", 0) < 1:
-                errors.append("Premium capacity approval must specify Premium and positive messagingUnits")
+                errors.append(
+                    "Premium capacity approval must specify Premium and positive messagingUnits")
             if not _is_nonempty_string(capacity.get("workloadProfileId")) or not _is_nonempty_string(capacity.get("estimateSource")):
-                errors.append("Premium capacity approval must identify its workload profile and estimate source")
+                errors.append(
+                    "Premium capacity approval must identify its workload profile and estimate source")
             try:
-                monthly_estimate = Decimal(str(capacity.get("estimatedMonthlyCost", "")))
+                monthly_estimate = Decimal(
+                    str(capacity.get("estimatedMonthlyCost", "")))
                 if not monthly_estimate.is_finite() or monthly_estimate <= 0:
                     raise InvalidOperation
             except (InvalidOperation, ValueError):
-                errors.append("Premium capacity approval requires a positive, reviewed monthly estimate")
+                errors.append(
+                    "Premium capacity approval requires a positive, reviewed monthly estimate")
             if not _is_nonempty_string(capacity.get("currency")):
-                errors.append("Premium capacity approval requires estimate currency")
+                errors.append(
+                    "Premium capacity approval requires estimate currency")
         budget = approvals.get("budget", {})
         if isinstance(budget, dict):
             try:
@@ -341,24 +393,29 @@ def validate_manifest(manifest: Any) -> list[str]:
                 if not monthly_limit.is_finite() or monthly_limit <= 0:
                     raise InvalidOperation
             except (InvalidOperation, ValueError):
-                errors.append("budget approval requires a positive monthlyLimit")
+                errors.append(
+                    "budget approval requires a positive monthlyLimit")
             if not _is_nonempty_string(budget.get("currency")):
                 errors.append("budget approval requires currency")
         retention = approvals.get("retention", {})
         if isinstance(retention, dict):
             for field in ("evidenceDays", "auditDays", "backupDays"):
                 if not isinstance(retention.get(field), int) or retention.get(field, 0) < 1:
-                    errors.append(f"retention approval requires positive {field}")
+                    errors.append(
+                        f"retention approval requires positive {field}")
             if retention.get("postgresGeoRedundantBackup") not in {"Enabled", "Disabled"}:
-                errors.append("retention approval requires an explicit PostgreSQL geo-redundant backup decision")
+                errors.append(
+                    "retention approval requires an explicit PostgreSQL geo-redundant backup decision")
         slo = approvals.get("productionSlo", {})
         if isinstance(slo, dict):
             for field in PRODUCTION_SLO_FIELDS:
                 value = slo.get(field)
                 if not isinstance(value, (int, float)) or value <= 0:
-                    errors.append(f"production SLO approval requires positive {field}")
+                    errors.append(
+                        f"production SLO approval requires positive {field}")
             if isinstance(slo.get("availabilityPercent"), (int, float)) and slo["availabilityPercent"] > 100:
-                errors.append("production SLO availabilityPercent must not exceed 100")
+                errors.append(
+                    "production SLO availabilityPercent must not exceed 100")
 
     return errors
 
@@ -371,11 +428,13 @@ def validate_release_manifest(manifest: Any) -> list[str]:
     if manifest.get("schemaVersion") != "1.0":
         errors.append("release manifest schemaVersion must be 1.0")
     if not isinstance(manifest.get("sourceCommit"), str) or not COMMIT.fullmatch(manifest["sourceCommit"]):
-        errors.append("release manifest sourceCommit must be a full 40-character commit ID")
+        errors.append(
+            "release manifest sourceCommit must be a full 40-character commit ID")
     if manifest.get("testsPassed") is not True:
         errors.append("promotion requires passing test evidence")
     if not isinstance(manifest.get("provenanceArtifact"), str) or not manifest["provenanceArtifact"].strip():
-        errors.append("release manifest must identify its build provenance artifact")
+        errors.append(
+            "release manifest must identify its build provenance artifact")
 
     promotion_status = manifest.get("promotionStatus")
     references = manifest.get("promotionReferences")
@@ -386,14 +445,17 @@ def validate_release_manifest(manifest: Any) -> list[str]:
         for name in ("web", "api", "assessment", "remediation"):
             reference = references.get(name)
             if not isinstance(reference, str) or not IMAGE_DIGEST.fullmatch(reference):
-                errors.append(f"eligible promotion requires an immutable {name} image digest reference")
+                errors.append(
+                    f"eligible promotion requires an immutable {name} image digest reference")
     elif promotion_status in {"blocked-no-registry-auth", "blocked-tests"}:
         if references:
-            errors.append("blocked release manifests must not contain promotion references")
+            errors.append(
+                "blocked release manifests must not contain promotion references")
         if not _is_nonempty_string(manifest.get("blockedReason")):
             errors.append("blocked release manifest requires blockedReason")
     else:
-        errors.append("promotionStatus must be eligible or an explicit blocked status")
+        errors.append(
+            "promotionStatus must be eligible or an explicit blocked status")
 
     local_digests = manifest.get("localImageConfigDigests", {})
     if not isinstance(local_digests, dict):
@@ -401,7 +463,8 @@ def validate_release_manifest(manifest: Any) -> list[str]:
     else:
         for name, digest in local_digests.items():
             if name not in {"web", "api", "assessment", "remediation"} or not isinstance(digest, str) or not SHA256.fullmatch(digest):
-                errors.append("localImageConfigDigests may contain only recognized image config SHA-256 values")
+                errors.append(
+                    "localImageConfigDigests may contain only recognized image config SHA-256 values")
     return errors
 
 
@@ -421,7 +484,8 @@ def main() -> int:
     if errors:
         for error in errors:
             print(f"ERROR: {error}", file=sys.stderr)
-        print(f"Rejected {len(errors)} deployment input issue(s); no resources were deployed.", file=sys.stderr)
+        print(
+            f"Rejected {len(errors)} deployment input issue(s); no resources were deployed.", file=sys.stderr)
         return 1
 
     print("Deployment inputs validated; no Azure resources were contacted or deployed.")
