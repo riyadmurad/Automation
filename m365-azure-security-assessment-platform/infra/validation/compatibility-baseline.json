@@ -1,0 +1,11 @@
+{
+  "baselineKind": "current-source-only",
+  "schemaMigration": "api/M365.SecurityAssessment.Persistence/Migrations/001_storage_audit.sql",
+  "schemaBaselineVersion": "001_storage_audit",
+  "priorSupportedRelease": null,
+  "priorReleaseCompatibility": "not-testable-no-prior-supported-release",
+  "jobEnvelopeContractVersion": "1.0",
+  "jobCompatibilityBaseline": "current-source-contract-only",
+  "databaseMigrationPolicy": "expand-first; no destructive contract phase is enabled by this candidate",
+  "rollbackPolicy": "application rollback preserves the forward-compatible schema; no automatic database downgrade"
+}

@@ -32,6 +32,8 @@ Open http://127.0.0.1:3000. No Microsoft credentials are needed and no customer 
 
 Planning and implementation acceptance are tracked in [OpenSpec tasks](./openspec/changes/m365-azure-security-baseline-platform/tasks.md). The Microsoft Zero Trust Assessment repository has been researched but is not integrated.
 
+**Paused milestone:** Application Foundation tasks 1.1-1.5 are accepted. Start later work from the [resume checkpoint](./m365-azure-security-assessment-platform/RESUME_CHECKPOINT.md); later-group draft files are not completed production features.
+
 ---
 
 ## Lab Workstation Deployments

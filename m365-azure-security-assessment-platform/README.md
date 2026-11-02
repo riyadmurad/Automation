@@ -2,6 +2,8 @@
 
 ## Status
 
+Application Foundation tasks 1.1-1.5 are complete, and implementation is paused at the user's request. Read [RESUME_CHECKPOINT.md](RESUME_CHECKPOINT.md) first when resuming; it contains the scoped acceptance evidence, commands and known follow-ups. Later-group authentication, persistence, runtime and infrastructure files already exist as unaccepted drafts; their presence does not change the pause boundary or imply production readiness.
+
 This repository currently contains a local, synthetic foundation, not a production security service. The UI is Next.js/React/TypeScript; the API, versioned domain contracts and worker entry points use .NET 10. PostgreSQL, Entra sign-in, customer consent/connections, durable audit storage, live assessments and remediation remain implementation tasks.
 
 The 13 initial service/control definitions are manual and unverified. Source links are not proof that an endpoint, permission, license, baseline revision or expected value has been qualified. Matching synthetic values do not establish customer compliance. Any comparison result is separate simulation metadata; unverified controls remain manual review.

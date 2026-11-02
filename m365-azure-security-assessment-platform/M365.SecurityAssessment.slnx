@@ -1,10 +1,18 @@
 <Solution>
   <Folder Name="/api/">
     <Project Path="api/M365.SecurityAssessment.Api/M365.SecurityAssessment.Api.csproj" />
+    <Project Path="api/M365.SecurityAssessment.Assessment/M365.SecurityAssessment.Assessment.csproj" />
+    <Project Path="api/M365.SecurityAssessment.Authentication/M365.SecurityAssessment.Authentication.csproj" />
     <Project Path="api/M365.SecurityAssessment.Domain/M365.SecurityAssessment.Domain.csproj" />
+    <Project Path="api/M365.SecurityAssessment.Persistence/M365.SecurityAssessment.Persistence.csproj" />
+    <Project Path="api/M365.SecurityAssessment.Runtime/M365.SecurityAssessment.Runtime.csproj" />
   </Folder>
   <Folder Name="/tests/" />
   <Folder Name="/tests/backend/">
+    <Project Path="tests/backend/M365.SecurityAssessment.Assessment.Tests/M365.SecurityAssessment.Assessment.Tests.csproj" />
+    <Project Path="tests/backend/M365.SecurityAssessment.Authentication.Tests/M365.SecurityAssessment.Authentication.Tests.csproj" />
+    <Project Path="tests/backend/M365.SecurityAssessment.Persistence.Tests/M365.SecurityAssessment.Persistence.Tests.csproj" />
+    <Project Path="tests/backend/M365.SecurityAssessment.Runtime.Tests/M365.SecurityAssessment.Runtime.Tests.csproj" />
     <Project Path="tests/backend/M365.SecurityAssessment.Tests/M365.SecurityAssessment.Tests.csproj" />
   </Folder>
   <Folder Name="/workers/">

@@ -7,7 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Security.Cryptography.Xml" Version="[10.0.14]" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\M365.SecurityAssessment.Domain\M365.SecurityAssessment.Domain.csproj" />
+    <ProjectReference Include="..\M365.SecurityAssessment.Assessment\M365.SecurityAssessment.Assessment.csproj" />
+    <ProjectReference Include="..\M365.SecurityAssessment.Authentication\M365.SecurityAssessment.Authentication.csproj" />
+    <ProjectReference Include="..\M365.SecurityAssessment.Persistence\M365.SecurityAssessment.Persistence.csproj" />
+    <ProjectReference Include="..\M365.SecurityAssessment.Runtime\M365.SecurityAssessment.Runtime.csproj" />
     <Content Include="..\..\baselines\control-inventory.json" Link="baselines\control-inventory.json" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="..\..\baselines\fixtures\*.json" Link="synthetic-fixtures\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>

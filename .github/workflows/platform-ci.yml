@@ -1,0 +1,375 @@
+name: M365 Azure Security Platform CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - m365-azure-security-assessment-platform/**
+      - .github/workflows/platform-ci.yml
+  pull_request:
+    paths:
+      - m365-azure-security-assessment-platform/**
+      - .github/workflows/platform-ci.yml
+  workflow_dispatch:
+    inputs:
+      publishImages:
+        description: Publish tested image digests to GHCR (requires the repository publish variable and package write access).
+        type: boolean
+        required: true
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: platform-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  dotnet-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: m365-azure-security-assessment-platform
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: m365-azure-security-assessment-platform/global.json
+      - name: Restore every project with committed lock files
+        shell: bash
+        run: |
+          mapfile -t projects < <(find . -type f -name '*.csproj' -not -path '*/obj/*' -not -path '*/bin/*' | sort)
+          test "${#projects[@]}" -gt 0
+          for project in "${projects[@]}"; do
+            project_dir="$(dirname "$project")"
+            if [[ -f "$project_dir/packages.lock.json" ]]; then
+              dotnet restore "$project" --locked-mode
+            else
+              dotnet restore "$project"
+            fi
+          done
+      - name: Build every project, including projects not listed in the solution file
+        shell: bash
+        run: |
+          mapfile -t projects < <(find . -type f -name '*.csproj' -not -path '*/obj/*' -not -path '*/bin/*' | sort)
+          for project in "${projects[@]}"; do
+            dotnet build "$project" --configuration Release --no-restore
+          done
+      - name: Scan NuGet dependency advisories
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/platform-results"
+          mapfile -t projects < <(find . -type f -name '*.csproj' -not -path '*/obj/*' -not -path '*/bin/*' | sort)
+          for project in "${projects[@]}"; do
+            python infra/validation/scan_nuget_vulnerabilities.py --dotnet dotnet "$project" 2>&1 | tee -a "$RUNNER_TEMP/platform-results/dotnet-vulnerabilities.txt"
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dotnet-build-and-dependency-scan
+          path: ${{ runner.temp }}/platform-results/
+          if-no-files-found: ignore
+          retention-days: 14
+
+  capability-regression:
+    needs: dotnet-build
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - capability: tenant-access
+            project: tests/backend/M365.SecurityAssessment.Authentication.Tests/M365.SecurityAssessment.Authentication.Tests.csproj
+          - capability: baseline-catalog
+            project: tests/backend/M365.SecurityAssessment.Assessment.Tests/M365.SecurityAssessment.Assessment.Tests.csproj
+          - capability: service-assessment
+            project: tests/backend/M365.SecurityAssessment.Assessment.Tests/M365.SecurityAssessment.Assessment.Tests.csproj
+          - capability: evidence-reporting
+            project: tests/backend/M365.SecurityAssessment.Persistence.Tests/M365.SecurityAssessment.Persistence.Tests.csproj
+          - capability: safe-remediation
+            project: tests/backend/M365.SecurityAssessment.Runtime.Tests/M365.SecurityAssessment.Runtime.Tests.csproj
+          - capability: emergency-access
+            project: tests/backend/M365.SecurityAssessment.Runtime.Tests/M365.SecurityAssessment.Runtime.Tests.csproj
+          - capability: partner-integrations
+            project: tests/backend/M365.SecurityAssessment.Runtime.Tests/M365.SecurityAssessment.Runtime.Tests.csproj
+          - capability: platform-operations
+            project: tests/backend/M365.SecurityAssessment.Tests/M365.SecurityAssessment.Tests.csproj
+    defaults:
+      run:
+        working-directory: m365-azure-security-assessment-platform
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: m365-azure-security-assessment-platform/global.json
+      - name: Restore test dependencies from the lock file
+        run: dotnet restore "${{ matrix.project }}" --locked-mode
+      - name: Prepare PostgreSQL image for Testcontainers
+        if: ${{ matrix.capability == 'tenant-access' || matrix.capability == 'evidence-reporting' }}
+        run: docker pull postgres:18-alpine
+      - name: Run ${{ matrix.capability }} regression suite
+        run: dotnet test "${{ matrix.project }}" --configuration Release --no-restore --logger "trx;LogFileName=${{ matrix.capability }}.trx" --results-directory "${{ runner.temp }}/platform-trx/${{ matrix.capability }}"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: capability-${{ matrix.capability }}-test-results
+          path: ${{ runner.temp }}/platform-trx/${{ matrix.capability }}/
+          if-no-files-found: ignore
+          retention-days: 14
+
+  schema-job-compatibility:
+    needs: dotnet-build
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    outputs:
+      prior_supported_release: ${{ steps.release-baseline.outputs.available }}
+    defaults:
+      run:
+        working-directory: m365-azure-security-assessment-platform
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: m365-azure-security-assessment-platform/global.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Determine whether an actual prior supported release baseline exists
+        id: release-baseline
+        shell: bash
+        run: |
+          available="$(python -c 'import json; from pathlib import Path; value=json.loads(Path("infra/validation/compatibility-baseline.json").read_text()); print(str(bool(value.get("priorSupportedRelease"))).lower())')"
+          echo "available=$available" >> "$GITHUB_OUTPUT"
+      - name: Run current-source schema baseline tests
+        run: python -m unittest discover -s tests/infra -v
+      - name: Prepare real PostgreSQL integration image
+        run: docker pull postgres:18-alpine
+      - name: Apply current migration and run current job-contract rejection tests
+        shell: bash
+        run: |
+          dotnet restore tests/backend/M365.SecurityAssessment.Persistence.Tests/M365.SecurityAssessment.Persistence.Tests.csproj --locked-mode
+          dotnet test tests/backend/M365.SecurityAssessment.Persistence.Tests/M365.SecurityAssessment.Persistence.Tests.csproj --configuration Release --no-restore --logger "trx;LogFileName=postgres-migration.trx" --results-directory "$RUNNER_TEMP/platform-trx/schema"
+          dotnet restore tests/backend/M365.SecurityAssessment.Runtime.Tests/M365.SecurityAssessment.Runtime.Tests.csproj --locked-mode
+          dotnet test tests/backend/M365.SecurityAssessment.Runtime.Tests/M365.SecurityAssessment.Runtime.Tests.csproj --configuration Release --no-restore --logger "trx;LogFileName=job-contract.trx" --results-directory "$RUNNER_TEMP/platform-trx/jobs"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: current-schema-job-compatibility-evidence
+          path: ${{ runner.temp }}/platform-trx/
+          if-no-files-found: ignore
+          retention-days: 14
+
+  frontend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    defaults:
+      run:
+        working-directory: m365-azure-security-assessment-platform/web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: m365-azure-security-assessment-platform/.node-version
+          cache: npm
+          cache-dependency-path: m365-azure-security-assessment-platform/web/package-lock.json
+      - run: npm ci
+      - name: Scan npm dependencies
+        run: npm audit --audit-level=high
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test -- --reporter=default
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - name: Run browser tests against the local synthetic preview
+        shell: bash
+        env:
+          ENABLE_SYNTHETIC_PREVIEW: 'true'
+          NEXT_TELEMETRY_DISABLED: '1'
+        run: |
+          npm run dev > "$RUNNER_TEMP/platform-next.log" 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          ready=false
+          for attempt in $(seq 1 60); do
+            if curl --fail --silent http://127.0.0.1:3000/ >/dev/null; then
+              ready=true
+              break
+            fi
+            sleep 2
+          done
+          test "$ready" = true
+          npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: frontend-synthetic-playwright-results
+          path: |
+            m365-azure-security-assessment-platform/web/test-results/
+            ${{ runner.temp }}/platform-next.log
+          if-no-files-found: ignore
+          retention-days: 14
+
+  infra-validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: m365-azure-security-assessment-platform
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Run offline deployment and release-manifest tests
+        run: python -m unittest discover -s tests/infra -v
+      - name: Install pinned stable Bicep compiler
+        shell: bash
+        run: |
+          curl --fail --silent --show-error --location https://github.com/Azure/bicep/releases/download/v0.48.1/bicep-linux-x64 --output "$RUNNER_TEMP/bicep"
+          chmod 0755 "$RUNNER_TEMP/bicep"
+          "$RUNNER_TEMP/bicep" --version
+      - name: Compile Bicep using the compiler's resource schemas
+        run: ${{ runner.temp }}/bicep build infra/azure/main.bicep --stdout > /dev/null
+
+  image-build:
+    needs:
+      - dotnet-build
+      - capability-regression
+      - schema-job-compatibility
+      - frontend
+      - infra-validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    permissions:
+      contents: read
+      attestations: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - name: Build all images locally without registry push
+        working-directory: m365-azure-security-assessment-platform
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/platform-images"
+          docker buildx build --load --file infra/docker/web.Dockerfile --tag "platform-ci/web:${GITHUB_SHA}" .
+          docker buildx build --load --file infra/docker/api.Dockerfile --tag "platform-ci/api:${GITHUB_SHA}" .
+          docker buildx build --load --file infra/docker/assessment-worker.Dockerfile --tag "platform-ci/assessment:${GITHUB_SHA}" .
+          docker buildx build --load --file infra/docker/remediation-worker.Dockerfile --tag "platform-ci/remediation:${GITHUB_SHA}" .
+          web="$(docker image inspect --format='{{.Id}}' "platform-ci/web:${GITHUB_SHA}")"
+          api="$(docker image inspect --format='{{.Id}}' "platform-ci/api:${GITHUB_SHA}")"
+          assessment="$(docker image inspect --format='{{.Id}}' "platform-ci/assessment:${GITHUB_SHA}")"
+          remediation="$(docker image inspect --format='{{.Id}}' "platform-ci/remediation:${GITHUB_SHA}")"
+          docker save \
+            "platform-ci/web:${GITHUB_SHA}" \
+            "platform-ci/api:${GITHUB_SHA}" \
+            "platform-ci/assessment:${GITHUB_SHA}" \
+            "platform-ci/remediation:${GITHUB_SHA}" \
+            --output "$RUNNER_TEMP/platform-images/tested-images.tar"
+          python infra/validation/write_release_artifacts.py \
+            --source-commit "$GITHUB_SHA" \
+            --repository "$GITHUB_REPOSITORY" \
+            --run-id "$GITHUB_RUN_ID" \
+            --tests-passed \
+            --local-digest "web=$web" \
+            --local-digest "api=$api" \
+            --local-digest "assessment=$assessment" \
+            --local-digest "remediation=$remediation" \
+            --output-directory "$RUNNER_TEMP/platform-images"
+          python infra/validation/validate_deployment.py --release-manifest "$RUNNER_TEMP/platform-images/release-manifest.json"
+      - name: Attest the tested image-config manifest
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: ${{ runner.temp }}/platform-images/release-manifest.json
+          push-to-registry: false
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tested-platform-images-provenance-candidate
+          path: ${{ runner.temp }}/platform-images/
+          if-no-files-found: error
+          retention-days: 14
+
+  publish-tested-digests:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.publishImages && vars.PLATFORM_CONTAINER_PUBLISH == 'true' && needs.schema-job-compatibility.outputs.prior_supported_release == 'true' }}
+    needs:
+      - dotnet-build
+      - capability-regression
+      - schema-job-compatibility
+      - frontend
+      - infra-validation
+      - image-build
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    permissions:
+      contents: read
+      actions: read
+      packages: write
+      attestations: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - uses: actions/download-artifact@v4
+        with:
+          name: tested-platform-images-provenance-candidate
+          path: ${{ runner.temp }}/platform-tested-images
+      - name: Push the tested images and publish immutable digest references
+        id: publish
+        working-directory: m365-azure-security-assessment-platform
+        shell: bash
+        env:
+          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GHCR_USER: ${{ github.actor }}
+          GHCR_REPOSITORY: ${{ github.repository }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/platform-promotion"
+          if ! printf '%s' "$GHCR_TOKEN" | docker login ghcr.io --username "$GHCR_USER" --password-stdin; then
+            echo "Registry authentication unavailable; no image push or promotion reference was created."
+            exit 0
+          fi
+          image_base="ghcr.io/${GHCR_REPOSITORY,,}"
+          docker load --input "$RUNNER_TEMP/platform-tested-images/tested-images.tar"
+          for image_name in web api assessment remediation; do
+            local_tag="platform-ci/${image_name}:${GITHUB_SHA}"
+            expected_config_digest="$(jq -r --arg image "$image_name" '.localImageConfigDigests[$image] // empty' "$RUNNER_TEMP/platform-tested-images/release-manifest.json")"
+            [[ "$expected_config_digest" =~ ^sha256:[0-9a-f]{64}$ ]]
+            config_digest="$(docker image inspect --format='{{.Id}}' "$local_tag")"
+            [[ "$config_digest" == "$expected_config_digest" ]]
+            target_tag="${image_base}/${image_name}:${GITHUB_SHA}"
+            docker tag "$local_tag" "$target_tag"
+            push_log="$(docker image push "$target_tag" 2>&1)" || { printf '%s\n' "$push_log"; exit 1; }
+            printf '%s\n' "$push_log"
+            digest="$(printf '%s\n' "$push_log" | sed -nE 's/.*digest: (sha256:[0-9a-f]{64}).*/\1/p' | tail -n 1)"
+            [[ "$digest" =~ ^sha256:[0-9a-f]{64}$ ]]
+            printf '%s\n' "${image_name}=${image_base}/${image_name}@${digest}" >> "$RUNNER_TEMP/platform-promotion/references.txt"
+          done
+          promotion_args=()
+          while IFS= read -r reference; do
+            promotion_args+=(--promotion-reference "$reference")
+          done < "$RUNNER_TEMP/platform-promotion/references.txt"
+          python infra/validation/write_release_artifacts.py \
+            --source-commit "$GITHUB_SHA" \
+            --repository "$GHCR_REPOSITORY" \
+            --run-id "$GITHUB_RUN_ID" \
+            --tests-passed \
+            "${promotion_args[@]}" \
+            --output-directory "$RUNNER_TEMP/platform-promotion/manifest"
+          python infra/validation/validate_deployment.py --release-manifest "$RUNNER_TEMP/platform-promotion/manifest/release-manifest.json"
+          cp "$RUNNER_TEMP/platform-promotion/manifest/release-manifest.json" infra/validation/promotion-manifest.json
+          echo "published=true" >> "$GITHUB_OUTPUT"
+      - name: Attest the digest promotion manifest
+        if: ${{ steps.publish.outputs.published == 'true' }}
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: m365-azure-security-assessment-platform/infra/validation/promotion-manifest.json
+          push-to-registry: false
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: platform-promotion-digest-manifest
+          path: ${{ runner.temp }}/platform-promotion/manifest/
+          if-no-files-found: ignore
+          retention-days: 14

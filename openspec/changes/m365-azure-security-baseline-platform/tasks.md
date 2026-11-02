@@ -17,9 +17,9 @@ Global dependencies: no live tests without explicit authorization for named disp
 
 - [x] 1.1 Create `m365-azure-security-assessment-platform/` with Next.js/TypeScript web, ASP.NET Core API, worker projects and test harnesses; pin supported stable runtime versions and verify frontend build/typecheck and backend build pass without modifying existing utility scripts.
 - [x] 1.2 Establish versioned API, evidence, adapter, job and operation contracts with synthetic two-customer fixtures; verify contract validation rejects unknown or incompatible versions and excludes credential fields from browser models.
-- [ ] 1.3 Freeze the 13 stable control IDs ENT-001, EXO-001, TEAM-001, SPO-001, PP-001, INT-001, MDI-001, MDO-001, MDE-001, MDCA-001, XDR-001, PUR-001 and AZR-001 from design section 6, including source revision/hash, normalized fixture fields, exact expected state, support mode, permissions, license/runtime and evidence; verify each ID maps to one spec scenario, named fixtures and a task, with no unverified API claimed as supported.
+- [x] 1.3 Freeze the 13 stable control IDs ENT-001, EXO-001, TEAM-001, SPO-001, PP-001, INT-001, MDI-001, MDO-001, MDE-001, MDCA-001, XDR-001, PUR-001 and AZR-001 from design section 6, including source revision/hash, normalized fixture fields, exact expected state, support mode, permissions, license/runtime and evidence; verify each ID maps to one spec scenario, named fixtures and a task, with no unverified API claimed as supported.
 - [x] 1.4 Document local setup, synthetic test identities and safe fixture execution; verify documented build/test commands work without production credentials or network writes to customer services.
-- [ ] 1.5 Add normalized fixture validators for the 13 initial controls and all required evidence fields; verify compliant, noncompliant, denied, partial, stale, unsupported, missing-license and manual cases produce distinct expected outcomes.
+- [x] 1.5 Add normalized fixture validators for the 13 initial controls and all required evidence fields; verify compliant, noncompliant, denied, partial, stale, unsupported, missing-license and manual cases produce distinct expected outcomes.
 
 ## 2. Authentication and Customer Authorization
 

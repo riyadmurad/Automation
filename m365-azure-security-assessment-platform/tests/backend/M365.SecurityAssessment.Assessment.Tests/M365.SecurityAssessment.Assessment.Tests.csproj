@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.11.0" />
+    <PackageReference Include="xunit" Version="2.9.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="4.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\api\M365.SecurityAssessment.Assessment\M365.SecurityAssessment.Assessment.csproj" />
+    <Content Include="..\..\..\baselines\qualified\pack-0.1.1.json" Link="qualified-baseline\pack-0.1.1.json" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\..\..\baselines\qualified\freeze-manifest-0.1.1.json" Link="qualified-baseline\freeze-manifest-0.1.1.json" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\..\..\baselines\reviewed-sources\source-discovery-failures.json" Link="qualified-baseline\source-discovery-failures.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

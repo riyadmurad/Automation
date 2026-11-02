@@ -1,0 +1,7 @@
+**/bin
+**/obj
+**/node_modules
+**/.next
+**/test-results
+**/tsconfig.tsbuildinfo
+.git

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "1.0",
+  "status": "unpriced-template",
+  "workloadProfile": {
+    "profileId": "",
+    "region": "",
+    "environmentClass": "production",
+    "deploymentMode": "",
+    "perCustomerConcurrency": null,
+    "maximumApiReplicas": null,
+    "maximumWebReplicas": null,
+    "postgresSku": "",
+    "postgresStorageGb": null,
+    "postgresHighAvailabilityMode": "",
+    "containerAppsCpuAndMemory": [],
+    "evidenceRetentionDays": null,
+    "auditRetentionDays": null,
+    "backupRetentionDays": null
+  },
+  "serviceBus": {
+    "sku": "Premium",
+    "messagingUnits": null,
+    "estimatedMonthlyCost": null,
+      "postgresGeoRedundantBackup": "",
+    "currency": "",
+    "estimateSource": "",
+    "estimateReviewedAtUtc": ""
+  },
+  "monthlyEstimate": {
+    "amount": null,
+    "currency": "",
+    "source": "",
+    "calculatedAtUtc": ""
+  },
+  "approval": {
+    "reference": "",
+    "approvedBy": "",
+    "approvedAtUtc": ""
+  },
+  "notice": "Template only. No Azure pricing query was made; this is not a quote or approved budget."
+}
