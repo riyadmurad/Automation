@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/api/">
+    <Project Path="api/M365.SecurityAssessment.Api/M365.SecurityAssessment.Api.csproj" />
+    <Project Path="api/M365.SecurityAssessment.Domain/M365.SecurityAssessment.Domain.csproj" />
+  </Folder>
+  <Folder Name="/tests/" />
+  <Folder Name="/tests/backend/">
+    <Project Path="tests/backend/M365.SecurityAssessment.Tests/M365.SecurityAssessment.Tests.csproj" />
+  </Folder>
+  <Folder Name="/workers/">
+    <Project Path="workers/M365.SecurityAssessment.AssessmentWorker/M365.SecurityAssessment.AssessmentWorker.csproj" />
+    <Project Path="workers/M365.SecurityAssessment.RemediationWorker/M365.SecurityAssessment.RemediationWorker.csproj" />
+  </Folder>
+</Solution>

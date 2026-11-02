@@ -1,0 +1,10 @@
+@M365.SecurityAssessment.Api_HostAddress = http://localhost:5235
+
+GET {{M365.SecurityAssessment.Api_HostAddress}}/health
+Accept: application/json
+
+###
+
+# Requires Development and Platform:EnableSyntheticPreview=true; loopback only.
+GET {{M365.SecurityAssessment.Api_HostAddress}}/api/v1/synthetic/fixtures
+Accept: application/json

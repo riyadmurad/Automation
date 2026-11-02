@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1.0", "source": "synthetic", "liveConnections": false, "writesEnabled": false,
+  "tenantId": "20000000-0000-0000-0000-000000000002", "customerName": "Synthetic Customer B", "collectedAtUtc": "2026-01-01T00:00:00Z",
+  "controls": [
+    { "controlId": "ENT-001", "collectionState": "complete", "resourceIds": ["role-ga-b", "role-pra-b"], "observedState": { "privileged_role_ids": ["role-ga-b", "role-pra-b"], "covered_role_ids": ["role-ga-b", "role-pra-b"], "excluded_principal_ids": ["emergency-b"], "emergency_registry_ids": ["emergency-b"], "unknown_scope_count": 0 } },
+    { "controlId": "EXO-001", "collectionState": "complete", "resourceIds": ["exchange-org-b"], "observedState": { "external_auto_forwarding_allowed": true, "scope_complete": true } },
+    { "controlId": "TEAM-001", "collectionState": "complete", "resourceIds": ["meeting-policy-b"], "observedState": { "anonymous_meeting_join_allowed": false, "policy_assignment_complete": true } },
+    { "controlId": "SPO-001", "collectionState": "complete", "resourceIds": ["sharing-policy-b"], "observedState": { "default_link_audience": "organization", "default_link_permission": "view", "scope_complete": true } },
+    { "controlId": "PP-001", "collectionState": "complete", "resourceIds": ["environment-b"], "observedState": { "expected_environment_ids": ["environment-b"], "covered_environment_ids": ["environment-b"], "dlp_enabled": true, "prohibited_connector_pair_tests": ["pair-a-blocked"] } },
+    { "controlId": "INT-001", "collectionState": "complete", "resourceIds": ["device-b"], "observedState": { "expected_device_ids": ["device-b"], "compliant_device_ids": ["device-b"], "pending_device_ids": [], "failed_device_ids": [], "unassigned_device_ids": [] } },
+    { "controlId": "MDI-001", "collectionState": "complete", "resourceIds": ["dc-b"], "observedState": { "expected_domain_controller_ids": ["dc-b"], "healthy_sensor_ids": ["dc-b"], "unknown_sensor_ids": [] } },
+    { "controlId": "MDO-001", "collectionState": "complete", "resourceIds": ["recipient-b"], "observedState": { "safe_links_enabled": true, "allow_click_through": false, "expected_recipient_ids": ["recipient-b"], "covered_recipient_ids": ["recipient-b"] } },
+    { "controlId": "MDE-001", "collectionState": "complete", "resourceIds": ["device-b"], "observedState": { "expected_device_ids": ["device-b"], "tamper_protected_device_ids": ["device-b"], "unknown_device_ids": [] } },
+    { "controlId": "MDCA-001", "collectionState": "complete", "resourceIds": ["app-b"], "observedState": { "expected_app_ids": ["app-b"], "covered_app_ids": ["app-b"], "enabled_governance_policy_ids": ["policy-b"] } },
+    { "controlId": "XDR-001", "collectionState": "complete", "resourceIds": ["mdo-b", "mde-b"], "observedState": { "expected_product_ids": ["mdo", "mde"], "integrated_product_ids": ["mdo", "mde"], "unknown_product_ids": [] } },
+    { "controlId": "PUR-001", "collectionState": "complete", "resourceIds": ["purview-b"], "observedState": { "unified_audit_log_enabled": true, "evidence_fresh": true } },
+    { "controlId": "AZR-001", "collectionState": "complete", "resourceIds": ["storage-b"], "observedState": { "expected_storage_account_ids": ["storage-b"], "secure_transfer_required_ids": ["storage-b"], "unknown_account_ids": [] } }
+  ]
+}

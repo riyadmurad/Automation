@@ -2,3 +2,15 @@
 .vscode
 .venv
 *.pyc
+node_modules/
+.next/
+**/bin/
+**/obj/
+.env
+.env.*
+!.env.example
+!**/.env.example
+**/secrets/
+**/local-secrets/
+**/TestResults/
+**/test-results/

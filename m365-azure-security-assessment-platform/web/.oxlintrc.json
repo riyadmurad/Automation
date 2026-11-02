@@ -1,0 +1,26 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": [
+    "react",
+    "jsx-a11y",
+    "nextjs",
+    "typescript"
+  ],
+  "rules": {
+    "react/jsx-key": "error",
+    "react/no-danger": "error",
+    "react/rules-of-hooks": "error",
+    "react/exhaustive-deps": "warn",
+    "jsx-a11y/alt-text": "error",
+    "nextjs/no-img-element": "warn",
+    "no-eval": "error",
+    "no-new-func": "error"
+  },
+  "ignorePatterns": [
+    ".next/**",
+    "out/**",
+    "build/**",
+    "coverage/**",
+    "next-env.d.ts"
+  ]
+}
